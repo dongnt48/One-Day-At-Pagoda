@@ -1,0 +1,27 @@
+{$SITE_ADDRESS:localhost} {
+ encode zstd gzip
+ header {
+  X-Content-Type-Options nosniff
+  Referrer-Policy strict-origin-when-cross-origin
+  X-Frame-Options DENY
+  Permissions-Policy "camera=(), microphone=(), geolocation=()"
+ }
+ handle /api/* {
+  reverse_proxy backend:2567
+ }
+ handle /matchmake/* {
+  reverse_proxy backend:2567 {
+   header_up X-Real-IP {remote_host}
+  }
+ }
+ handle_path /realtime/* {
+  reverse_proxy backend:2567 {
+   header_up X-Real-IP {remote_host}
+  }
+ }
+ handle {
+  root * /srv
+  try_files {path} /index.html
+  file_server
+ }
+}

@@ -1,0 +1,167 @@
+{
+    "created":  "2023-12-28T15:33:30.652151+00:00",
+    "modified":  "2026-05-27T01:12:01.057304+00:00",
+    "id":  10310495,
+    "conceptrecid":  "10310494",
+    "doi":  "10.5281/zenodo.10310495",
+    "conceptdoi":  "10.5281/zenodo.10310494",
+    "doi_url":  "https://doi.org/10.5281/zenodo.10310495",
+    "metadata":  {
+                     "title":  "Buddha",
+                     "doi":  "10.5281/zenodo.10310495",
+                     "publication_date":  "2022-05-23",
+                     "description":  "Reverse Modelling project\n\nSource: Objaverse 1.0 / Sketchfab",
+                     "access_right":  "open",
+                     "creators":  [
+                                      {
+                                          "name":  "AkankshaGupta",
+                                          "affiliation":  "none"
+                                      }
+                                  ],
+                     "resource_type":  {
+                                           "title":  "Dataset",
+                                           "type":  "dataset"
+                                       },
+                     "license":  {
+                                     "id":  "cc-by-4.0"
+                                 },
+                     "communities":  [
+                                         {
+                                             "id":  "3dbigdataspace"
+                                         }
+                                     ],
+                     "relations":  {
+                                       "version":  [
+                                                       {
+                                                           "index":  0,
+                                                           "is_last":  true,
+                                                           "parent":  {
+                                                                          "pid_type":  "recid",
+                                                                          "pid_value":  "10310494"
+                                                                      }
+                                                       }
+                                                   ]
+                                   }
+                 },
+    "title":  "Buddha",
+    "links":  {
+                  "self":  "https://zenodo.org/api/records/10310495",
+                  "self_html":  "https://zenodo.org/records/10310495",
+                  "preview_html":  "https://zenodo.org/records/10310495?preview=1",
+                  "doi":  "https://doi.org/10.5281/zenodo.10310495",
+                  "self_doi":  "https://doi.org/10.5281/zenodo.10310495",
+                  "self_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10310495",
+                  "reserve_doi":  "https://zenodo.org/api/records/10310495/draft/pids/doi",
+                  "parent":  "https://zenodo.org/api/records/10310494",
+                  "parent_html":  "https://zenodo.org/records/10310494",
+                  "parent_doi":  "https://doi.org/10.5281/zenodo.10310494",
+                  "parent_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10310494",
+                  "self_iiif_manifest":  "https://zenodo.org/api/iiif/record:10310495/manifest",
+                  "self_iiif_sequence":  "https://zenodo.org/api/iiif/record:10310495/sequence/default",
+                  "files":  "https://zenodo.org/api/records/10310495/files",
+                  "media_files":  "https://zenodo.org/api/records/10310495/media-files",
+                  "thumbnails":  {
+                                     "10":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E10,/0/default.jpg",
+                                     "50":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E50,/0/default.jpg",
+                                     "100":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E100,/0/default.jpg",
+                                     "250":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E250,/0/default.jpg",
+                                     "750":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E750,/0/default.jpg",
+                                     "1200":  "https://zenodo.org/api/iiif/record:10310495:thumb3.jpeg/full/%5E1200,/0/default.jpg"
+                                 },
+                  "latest":  "https://zenodo.org/api/records/10310495/versions/latest",
+                  "latest_html":  "https://zenodo.org/records/10310495/latest",
+                  "versions":  "https://zenodo.org/api/records/10310495/versions",
+                  "draft":  "https://zenodo.org/api/records/10310495/draft",
+                  "access_links":  "https://zenodo.org/api/records/10310495/access/links",
+                  "access_grants":  "https://zenodo.org/api/records/10310495/access/grants",
+                  "access_users":  "https://zenodo.org/api/records/10310495/access/users",
+                  "access_request":  "https://zenodo.org/api/records/10310495/access/request",
+                  "access":  "https://zenodo.org/api/records/10310495/access",
+                  "communities":  "https://zenodo.org/api/records/10310495/communities",
+                  "communities-suggestions":  "https://zenodo.org/api/records/10310495/communities-suggestions",
+                  "request_deletion":  "https://zenodo.org/api/records/10310495/request-deletion",
+                  "file_modification":  "https://zenodo.org/api/records/10310495/file-modification",
+                  "quota_increase":  "https://zenodo.org/api/records/10310495/quota-increase",
+                  "requests":  "https://zenodo.org/api/records/10310495/requests"
+              },
+    "updated":  "2026-05-27T01:12:01.057304+00:00",
+    "recid":  "10310495",
+    "revision":  9,
+    "files":  [
+                  {
+                      "id":  "c1282049-b610-481a-bd68-36b8f11c32c8",
+                      "key":  "c05dca40bae2474bbe0d3e4dcfd258cb.glb",
+                      "size":  8063212,
+                      "checksum":  "md5:6d473b076f60bd4060222f21fbfad0d3",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/c05dca40bae2474bbe0d3e4dcfd258cb.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "341514b5-1691-4ccd-94f0-ab7da3b15d71",
+                      "key":  "thumb3.jpeg",
+                      "size":  3368,
+                      "checksum":  "md5:0c85581fb0e498c0c2114d1cf905cdd7",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/thumb3.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "8da7146a-6127-4fd9-842c-393a18451532",
+                      "key":  "thumb1.jpeg",
+                      "size":  26242,
+                      "checksum":  "md5:fc42dc3291809450c8905c141f363744",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/thumb1.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "7542b8ce-0f35-4b9d-97e7-564200db60f8",
+                      "key":  "thumb2.jpeg",
+                      "size":  15177,
+                      "checksum":  "md5:4798d82d347517edaa70b7d5827155c4",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/thumb2.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "622776c5-887d-45b8-924d-abdfb96e156f",
+                      "key":  "thumb4.jpeg",
+                      "size":  924,
+                      "checksum":  "md5:84913b7c2a07206b65d377efc8feb6e8",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/thumb4.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "911e7156-f3ac-463c-837e-187d41f7a8e6",
+                      "key":  "thumb0.jpeg",
+                      "size":  81451,
+                      "checksum":  "md5:4060d0fcd622707dee12ae643caf7a5f",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310495/files/thumb0.jpeg/content"
+                                }
+                  }
+              ],
+    "swh":  {
+
+            },
+    "owners":  [
+                   {
+                       "id":  "1197195"
+                   }
+               ],
+    "status":  "published",
+    "stats":  {
+                  "downloads":  168,
+                  "unique_downloads":  157,
+                  "views":  110,
+                  "unique_views":  101,
+                  "version_downloads":  168,
+                  "version_unique_downloads":  157,
+                  "version_unique_views":  101,
+                  "version_views":  110
+              },
+    "state":  "done",
+    "submitted":  true
+}

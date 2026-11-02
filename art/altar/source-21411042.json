@@ -1,0 +1,276 @@
+{
+    "created":  "2026-07-31T10:20:18.370553+00:00",
+    "modified":  "2026-07-31T10:20:19.435539+00:00",
+    "id":  21411042,
+    "conceptrecid":  "20193364",
+    "doi":  "10.5281/zenodo.21411042",
+    "conceptdoi":  "10.5281/zenodo.20193364",
+    "doi_url":  "https://doi.org/10.5281/zenodo.21411042",
+    "metadata":  {
+                     "title":  "Gautama Buddha",
+                     "doi":  "10.5281/zenodo.21411042",
+                     "publication_date":  "2026-07-17",
+                     "description":  "Gautama Buddha (c. 563/480 – c. 483/400 BC), also known as Siddhartha Gautama, Shakyamuni Buddha, or simply the Buddha, was an ascetic (srama?a) and sage, on whose teachings Buddhism was founded. He is believed to have lived and taught mostly in the eastern part of ancient India sometime between the 6th and 4th centuries BC.",
+                     "access_right":  "open",
+                     "creators":  [
+                                      {
+                                          "name":  "Scan-the-World",
+                                          "affiliation":  null
+                                      }
+                                  ],
+                     "keywords":  [
+                                      "sculpture",
+                                      "Seated",
+                                      "buddha",
+                                      "gautama",
+                                      "statue",
+                                      "Sculpture",
+                                      "buddhism"
+                                  ],
+                     "version":  "Enriched",
+                     "resource_type":  {
+                                           "title":  "Dataset",
+                                           "type":  "dataset"
+                                       },
+                     "license":  {
+                                     "id":  "cc-by-nc-sa-4.0"
+                                 },
+                     "communities":  [
+                                         {
+                                             "id":  "3dbigdataspace"
+                                         }
+                                     ],
+                     "relations":  {
+                                       "version":  [
+                                                       {
+                                                           "index":  1,
+                                                           "is_last":  true,
+                                                           "parent":  {
+                                                                          "pid_type":  "recid",
+                                                                          "pid_value":  "20193364"
+                                                                      }
+                                                       }
+                                                   ]
+                                   }
+                 },
+    "title":  "Gautama Buddha",
+    "links":  {
+                  "self":  "https://zenodo.org/api/records/21411042",
+                  "self_html":  "https://zenodo.org/records/21411042",
+                  "preview_html":  "https://zenodo.org/records/21411042?preview=1",
+                  "doi":  "https://doi.org/10.5281/zenodo.21411042",
+                  "self_doi":  "https://doi.org/10.5281/zenodo.21411042",
+                  "self_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.21411042",
+                  "reserve_doi":  "https://zenodo.org/api/records/21411042/draft/pids/doi",
+                  "parent":  "https://zenodo.org/api/records/20193364",
+                  "parent_html":  "https://zenodo.org/records/20193364",
+                  "parent_doi":  "https://doi.org/10.5281/zenodo.20193364",
+                  "parent_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.20193364",
+                  "self_iiif_manifest":  "https://zenodo.org/api/iiif/record:21411042/manifest",
+                  "self_iiif_sequence":  "https://zenodo.org/api/iiif/record:21411042/sequence/default",
+                  "files":  "https://zenodo.org/api/records/21411042/files",
+                  "media_files":  "https://zenodo.org/api/records/21411042/media-files",
+                  "thumbnails":  {
+                                     "10":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E10,/0/default.jpg",
+                                     "50":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E50,/0/default.jpg",
+                                     "100":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E100,/0/default.jpg",
+                                     "250":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E250,/0/default.jpg",
+                                     "750":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E750,/0/default.jpg",
+                                     "1200":  "https://zenodo.org/api/iiif/record:21411042:40d93bdf1adff502187afac506be4b15_top.png/full/%5E1200,/0/default.jpg"
+                                 },
+                  "latest":  "https://zenodo.org/api/records/21411042/versions/latest",
+                  "latest_html":  "https://zenodo.org/records/21411042/latest",
+                  "versions":  "https://zenodo.org/api/records/21411042/versions",
+                  "draft":  "https://zenodo.org/api/records/21411042/draft",
+                  "access_links":  "https://zenodo.org/api/records/21411042/access/links",
+                  "access_grants":  "https://zenodo.org/api/records/21411042/access/grants",
+                  "access_users":  "https://zenodo.org/api/records/21411042/access/users",
+                  "access_request":  "https://zenodo.org/api/records/21411042/access/request",
+                  "access":  "https://zenodo.org/api/records/21411042/access",
+                  "communities":  "https://zenodo.org/api/records/21411042/communities",
+                  "communities-suggestions":  "https://zenodo.org/api/records/21411042/communities-suggestions",
+                  "request_deletion":  "https://zenodo.org/api/records/21411042/request-deletion",
+                  "file_modification":  "https://zenodo.org/api/records/21411042/file-modification",
+                  "quota_increase":  "https://zenodo.org/api/records/21411042/quota-increase",
+                  "requests":  "https://zenodo.org/api/records/21411042/requests"
+              },
+    "updated":  "2026-07-31T10:20:19.435539+00:00",
+    "recid":  "21411042",
+    "revision":  4,
+    "files":  [
+                  {
+                      "id":  "ec4d864a-8109-4fd3-a574-92fe2b197312",
+                      "key":  "enrichments.json",
+                      "size":  3705,
+                      "checksum":  "md5:7ccaa0b1efe1a7945ebe0d6faf2b365d",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/enrichments.json/content"
+                                }
+                  },
+                  {
+                      "id":  "1c0cd853-2983-4741-95c6-07708c0a03f5",
+                      "key":  "40d93bdf1adff502187afac506be4b15_top.png",
+                      "size":  145899,
+                      "checksum":  "md5:73ed3b3a49c2af202f49c4b436102357",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_top.png/content"
+                                }
+                  },
+                  {
+                      "id":  "e931f663-b9d3-4a93-88f4-934ec0637f34",
+                      "key":  "40d93bdf1adff502187afac506be4b15.usdz",
+                      "size":  58651237,
+                      "checksum":  "md5:16459940dc43d299c7fd56a0a323796c",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15.usdz/content"
+                                }
+                  },
+                  {
+                      "id":  "5f540709-d61d-4268-8cbe-17149f4521de",
+                      "key":  "edm.xml",
+                      "size":  6197,
+                      "checksum":  "md5:b062628c82746f6533c3483af60bd9da",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/edm.xml/content"
+                                }
+                  },
+                  {
+                      "id":  "76f963c8-4e2f-40aa-b7a3-ce565d9d1419",
+                      "key":  "40d93bdf1adff502187afac506be4b15.glb",
+                      "size":  11073016,
+                      "checksum":  "md5:0aefcdb6de59e7f449a6dd929ad0855b",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "8a32a619-c72a-46c6-9e37-7537e2797bfd",
+                      "key":  "40d93bdf1adff502187afac506be4b15_r000.png",
+                      "size":  180151,
+                      "checksum":  "md5:6ecfdf9a3d08f3388cd1aebef4860f9b",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_r000.png/content"
+                                }
+                  },
+                  {
+                      "id":  "97f70cee-0e30-452e-8414-9804d07f0692",
+                      "key":  "40d93bdf1adff502187afac506be4b15_r090.png",
+                      "size":  170210,
+                      "checksum":  "md5:dc532778f992bfc165bf48e937674dcf",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_r090.png/content"
+                                }
+                  },
+                  {
+                      "id":  "4816db75-eba0-4961-99f8-2f0f04e4fea1",
+                      "key":  "40d93bdf1adff502187afac506be4b15_r180.png",
+                      "size":  180579,
+                      "checksum":  "md5:9eedec581b4c59dc8b9a30c3122ce197",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_r180.png/content"
+                                }
+                  },
+                  {
+                      "id":  "8cae748f-a9a7-4e53-881a-a7d2061f7c91",
+                      "key":  "40d93bdf1adff502187afac506be4b15_r270.png",
+                      "size":  175015,
+                      "checksum":  "md5:d5f2a8ebed5e38161c3f253b2fbcb253",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_r270.png/content"
+                                }
+                  },
+                  {
+                      "id":  "fa77406a-9afb-463c-a4bd-c326fc7fa0e2",
+                      "key":  "iiif.json",
+                      "size":  2573,
+                      "checksum":  "md5:7a62d0ddc3e9a48eae4f00561bf8c7f0",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/iiif.json/content"
+                                }
+                  },
+                  {
+                      "id":  "5312e9ad-8e9e-43c4-a79e-505efdd77215",
+                      "key":  "edm.validation.json",
+                      "size":  14703,
+                      "checksum":  "md5:ff7d94d7f5262032f2f14ff1bd9bd601",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/edm.validation.json/content"
+                                }
+                  },
+                  {
+                      "id":  "27cf1ef6-f0b6-4ea7-9608-d4260493ea1c",
+                      "key":  "mets.xml",
+                      "size":  6955,
+                      "checksum":  "md5:51a426657d39df2f3e30c4cdfd8cad24",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/mets.xml/content"
+                                }
+                  },
+                  {
+                      "id":  "71392cdc-f004-4a2f-bdff-32cac5cf8885",
+                      "key":  "40d93bdf1adff502187afac506be4b15_normalized.glb",
+                      "size":  66269072,
+                      "checksum":  "md5:57c379401d9b0bb9abbc331fb83d8fec",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_normalized.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "e794dea5-0da4-4f16-a26b-038b3ccee597",
+                      "key":  "40d93bdf1adff502187afac506be4b15_normalized-0.100.glb",
+                      "size":  277780,
+                      "checksum":  "md5:3c5f7aea20796e70ac793ca4b44a508b",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_normalized-0.100.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "390b4dd9-b54a-4a3f-9f5d-96034cb0ce45",
+                      "key":  "40d93bdf1adff502187afac506be4b15_normalized_compressed.glb",
+                      "size":  2972012,
+                      "checksum":  "md5:258f0cab639faf3029ffea83cec0bec8",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_normalized_compressed.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "554fe76a-df0f-4b63-87fe-ee707995026a",
+                      "key":  "40d93bdf1adff502187afac506be4b15_normalized-0.500.glb",
+                      "size":  1062992,
+                      "checksum":  "md5:f938a7e1973767b1004931ec86a5e8e5",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_normalized-0.500.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "d65afeda-3732-49de-887a-ae02e38ca9cb",
+                      "key":  "40d93bdf1adff502187afac506be4b15_normalized-0.250.glb",
+                      "size":  598048,
+                      "checksum":  "md5:860e9d20d0649847f52e906fe7553f63",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/21411042/files/40d93bdf1adff502187afac506be4b15_normalized-0.250.glb/content"
+                                }
+                  }
+              ],
+    "swh":  {
+
+            },
+    "owners":  [
+                   {
+                       "id":  "1197195"
+                   }
+               ],
+    "status":  "published",
+    "stats":  {
+                  "downloads":  327,
+                  "unique_downloads":  292,
+                  "views":  52,
+                  "unique_views":  51,
+                  "version_downloads":  265,
+                  "version_unique_downloads":  230,
+                  "version_unique_views":  29,
+                  "version_views":  29
+              },
+    "state":  "done",
+    "submitted":  true
+}

@@ -1,0 +1,167 @@
+{
+    "created":  "2023-12-28T15:30:07.126439+00:00",
+    "modified":  "2026-05-27T00:56:01.081086+00:00",
+    "id":  10310213,
+    "conceptrecid":  "10310212",
+    "doi":  "10.5281/zenodo.10310213",
+    "conceptdoi":  "10.5281/zenodo.10310212",
+    "doi_url":  "https://doi.org/10.5281/zenodo.10310213",
+    "metadata":  {
+                     "title":  "Chinese Amoghasiddhi Buddha, 1403 - 1424 CE",
+                     "doi":  "10.5281/zenodo.10310213",
+                     "publication_date":  "2020-04-22",
+                     "description":  "Sandalwood, lacquer, and gold Chinese Amoghasiddhi Buddha, 1403 - 1424 CE, now in the collection of the Minneapolis Institute of Art.\n\nFrom the sculpture\u0027s description on artsmia.org:\n\n*\u0027Amoghasiddhi is one of a group of five buddhas that embody five distinct types of wisdom and are thus sometimes called the \"Five Wisdom Buddhas.\" Of the five, who are believed to occupy the four cardinal directions and an immovable central direction, Amoghasiddhi occupies the northern position. He is an embodiment of the \"Wisdom of Unrestricted Activity,\" which enables one to save living beings on the path toward salvation using individualized means. Amoghasiddhi\u0027s emblem, the double thunderbolt (vishvavajra), decorates the bottom of this sculpture... X-ray analysis has revealed what appear to be a roll of paper, a small bead or pearl, and a glass vial within a compartment inside this small statue.\u0027* \n\nMore information about the sculpture here:\nhttps://collections.artsmia.org/art/31240/amoghasiddhi-buddha-china\n\nSource: Objaverse 1.0 / Sketchfab",
+                     "access_right":  "open",
+                     "creators":  [
+                                      {
+                                          "name":  "artsmia",
+                                          "affiliation":  "none"
+                                      }
+                                  ],
+                     "resource_type":  {
+                                           "title":  "Dataset",
+                                           "type":  "dataset"
+                                       },
+                     "license":  {
+                                     "id":  "cc-zero"
+                                 },
+                     "communities":  [
+                                         {
+                                             "id":  "3dbigdataspace"
+                                         }
+                                     ],
+                     "relations":  {
+                                       "version":  [
+                                                       {
+                                                           "index":  0,
+                                                           "is_last":  true,
+                                                           "parent":  {
+                                                                          "pid_type":  "recid",
+                                                                          "pid_value":  "10310212"
+                                                                      }
+                                                       }
+                                                   ]
+                                   }
+                 },
+    "title":  "Chinese Amoghasiddhi Buddha, 1403 - 1424 CE",
+    "links":  {
+                  "self":  "https://zenodo.org/api/records/10310213",
+                  "self_html":  "https://zenodo.org/records/10310213",
+                  "preview_html":  "https://zenodo.org/records/10310213?preview=1",
+                  "doi":  "https://doi.org/10.5281/zenodo.10310213",
+                  "self_doi":  "https://doi.org/10.5281/zenodo.10310213",
+                  "self_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10310213",
+                  "reserve_doi":  "https://zenodo.org/api/records/10310213/draft/pids/doi",
+                  "parent":  "https://zenodo.org/api/records/10310212",
+                  "parent_html":  "https://zenodo.org/records/10310212",
+                  "parent_doi":  "https://doi.org/10.5281/zenodo.10310212",
+                  "parent_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10310212",
+                  "self_iiif_manifest":  "https://zenodo.org/api/iiif/record:10310213/manifest",
+                  "self_iiif_sequence":  "https://zenodo.org/api/iiif/record:10310213/sequence/default",
+                  "files":  "https://zenodo.org/api/records/10310213/files",
+                  "media_files":  "https://zenodo.org/api/records/10310213/media-files",
+                  "thumbnails":  {
+                                     "10":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E10,/0/default.jpg",
+                                     "50":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E50,/0/default.jpg",
+                                     "100":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E100,/0/default.jpg",
+                                     "250":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E250,/0/default.jpg",
+                                     "750":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E750,/0/default.jpg",
+                                     "1200":  "https://zenodo.org/api/iiif/record:10310213:thumb4.jpeg/full/%5E1200,/0/default.jpg"
+                                 },
+                  "latest":  "https://zenodo.org/api/records/10310213/versions/latest",
+                  "latest_html":  "https://zenodo.org/records/10310213/latest",
+                  "versions":  "https://zenodo.org/api/records/10310213/versions",
+                  "draft":  "https://zenodo.org/api/records/10310213/draft",
+                  "access_links":  "https://zenodo.org/api/records/10310213/access/links",
+                  "access_grants":  "https://zenodo.org/api/records/10310213/access/grants",
+                  "access_users":  "https://zenodo.org/api/records/10310213/access/users",
+                  "access_request":  "https://zenodo.org/api/records/10310213/access/request",
+                  "access":  "https://zenodo.org/api/records/10310213/access",
+                  "communities":  "https://zenodo.org/api/records/10310213/communities",
+                  "communities-suggestions":  "https://zenodo.org/api/records/10310213/communities-suggestions",
+                  "request_deletion":  "https://zenodo.org/api/records/10310213/request-deletion",
+                  "file_modification":  "https://zenodo.org/api/records/10310213/file-modification",
+                  "quota_increase":  "https://zenodo.org/api/records/10310213/quota-increase",
+                  "requests":  "https://zenodo.org/api/records/10310213/requests"
+              },
+    "updated":  "2026-05-27T00:56:01.081086+00:00",
+    "recid":  "10310213",
+    "revision":  9,
+    "files":  [
+                  {
+                      "id":  "581fb866-f7d1-45f2-88bd-8c3cb337a62b",
+                      "key":  "thumb4.jpeg",
+                      "size":  670,
+                      "checksum":  "md5:979cc0f69ad94f91b9cfc2cbbbf17026",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/thumb4.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "5e6e0801-2236-426b-8c63-130db1a42dd5",
+                      "key":  "33699be99fd64375bf0371c0e0c12f70.glb",
+                      "size":  5307684,
+                      "checksum":  "md5:31ff1e77a550b2e175b56556f812f917",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/33699be99fd64375bf0371c0e0c12f70.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "cfb64e88-3d9a-47fb-b7b7-f233f82c10dc",
+                      "key":  "thumb3.jpeg",
+                      "size":  3267,
+                      "checksum":  "md5:1ef1714b1e2b6b23a3844a56432b7aa6",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/thumb3.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "c18e0e5c-6a14-4c6b-96ea-6ed73ea31897",
+                      "key":  "thumb0.jpeg",
+                      "size":  87053,
+                      "checksum":  "md5:bcf8126df8f9ea52438454ed9234559b",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/thumb0.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "56b63f68-dfb8-427d-a3b6-372c14e42497",
+                      "key":  "thumb1.jpeg",
+                      "size":  30654,
+                      "checksum":  "md5:d786667ad419b84fbda58456c4ddb043",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/thumb1.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "4fd8a900-70fc-47ac-a8a3-bcfc403d66a0",
+                      "key":  "thumb2.jpeg",
+                      "size":  17116,
+                      "checksum":  "md5:58e858e392830a170133c60129394d94",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10310213/files/thumb2.jpeg/content"
+                                }
+                  }
+              ],
+    "swh":  {
+
+            },
+    "owners":  [
+                   {
+                       "id":  "1197195"
+                   }
+               ],
+    "status":  "published",
+    "stats":  {
+                  "downloads":  163,
+                  "unique_downloads":  152,
+                  "views":  101,
+                  "unique_views":  97,
+                  "version_downloads":  163,
+                  "version_unique_downloads":  152,
+                  "version_unique_views":  97,
+                  "version_views":  101
+              },
+    "state":  "done",
+    "submitted":  true
+}

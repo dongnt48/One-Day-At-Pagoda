@@ -1,0 +1,45 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+.cache/
+
+# Local environment (keep shared examples)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Runtime data and logs
+/backend/data/
+*.log
+
+# Test artifacts
+test-results/
+playwright-report/
+playwright/.cache/
+coverage/
+
+# Python cache from Blender scripts
+__pycache__/
+*.py[cod]
+
+# Blender backup files (keep original .blend sources)
+*.blend[0-9]*
+
+# Local editor and OS files
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+.thumbnails/
+
+# Recoverable local cleanup archive
+/.cleanup-backup/
+
+# Generated browser screenshots in the project root
+/*-preview.png
+/*-fixed.png

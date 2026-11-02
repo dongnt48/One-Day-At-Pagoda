@@ -1,0 +1,9 @@
+Hall statue: adapted from "Chinese Amoghasiddhi Buddha, 1403 - 1424 CE"
+by artsmia / Minneapolis Institute of Art.
+Source: https://zenodo.org/records/10310213
+Collection: https://collections.artsmia.org/art/31240/amoghasiddhi-buddha-china
+License listed by source: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
+Changes: normalized scale/origin, reduced triangle count, recolored texture to gilt,
+adjusted metallic and roughness values for real-time rendering.
+This depicts Amoghasiddhi, not an authenticated model of Shakyamuni, and is not a
+scan of the exact statue in the user's reference image. Used as a visual prototype.

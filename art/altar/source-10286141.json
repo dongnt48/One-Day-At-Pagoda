@@ -1,0 +1,167 @@
+{
+    "created":  "2023-12-28T11:51:07.771020+00:00",
+    "modified":  "2026-05-26T05:35:49.337510+00:00",
+    "id":  10286141,
+    "conceptrecid":  "10286140",
+    "doi":  "10.5281/zenodo.10286141",
+    "conceptdoi":  "10.5281/zenodo.10286140",
+    "doi_url":  "https://doi.org/10.5281/zenodo.10286141",
+    "metadata":  {
+                     "title":  "Tian Tan Buddha videogrammetry scan",
+                     "doi":  "10.5281/zenodo.10286141",
+                     "publication_date":  "2020-04-13",
+                     "description":  "Tian Tan Buddha is a large bronze statue of Buddha Shakyamuni, completed in 1993, and located at Ngong Ping, Lantau Island, in Hong Kong. The statue is sited near Po Lin Monastery and symbolises the harmonious relationship between man and nature, people and faith. It is a major centre of Buddhism in Hong Kong, and is also a tourist attraction\n\nhttps://en.wikipedia.org/wiki/Tian_Tan_Buddha\n\nSource: Objaverse 1.0 / Sketchfab",
+                     "access_right":  "open",
+                     "creators":  [
+                                      {
+                                          "name":  "miguelbandera",
+                                          "affiliation":  "none"
+                                      }
+                                  ],
+                     "resource_type":  {
+                                           "title":  "Dataset",
+                                           "type":  "dataset"
+                                       },
+                     "license":  {
+                                     "id":  "cc-by-4.0"
+                                 },
+                     "communities":  [
+                                         {
+                                             "id":  "3dbigdataspace"
+                                         }
+                                     ],
+                     "relations":  {
+                                       "version":  [
+                                                       {
+                                                           "index":  0,
+                                                           "is_last":  true,
+                                                           "parent":  {
+                                                                          "pid_type":  "recid",
+                                                                          "pid_value":  "10286140"
+                                                                      }
+                                                       }
+                                                   ]
+                                   }
+                 },
+    "title":  "Tian Tan Buddha videogrammetry scan",
+    "links":  {
+                  "self":  "https://zenodo.org/api/records/10286141",
+                  "self_html":  "https://zenodo.org/records/10286141",
+                  "preview_html":  "https://zenodo.org/records/10286141?preview=1",
+                  "doi":  "https://doi.org/10.5281/zenodo.10286141",
+                  "self_doi":  "https://doi.org/10.5281/zenodo.10286141",
+                  "self_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10286141",
+                  "reserve_doi":  "https://zenodo.org/api/records/10286141/draft/pids/doi",
+                  "parent":  "https://zenodo.org/api/records/10286140",
+                  "parent_html":  "https://zenodo.org/records/10286140",
+                  "parent_doi":  "https://doi.org/10.5281/zenodo.10286140",
+                  "parent_doi_html":  "https://zenodo.org/doi/10.5281/zenodo.10286140",
+                  "self_iiif_manifest":  "https://zenodo.org/api/iiif/record:10286141/manifest",
+                  "self_iiif_sequence":  "https://zenodo.org/api/iiif/record:10286141/sequence/default",
+                  "files":  "https://zenodo.org/api/records/10286141/files",
+                  "media_files":  "https://zenodo.org/api/records/10286141/media-files",
+                  "thumbnails":  {
+                                     "10":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E10,/0/default.jpg",
+                                     "50":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E50,/0/default.jpg",
+                                     "100":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E100,/0/default.jpg",
+                                     "250":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E250,/0/default.jpg",
+                                     "750":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E750,/0/default.jpg",
+                                     "1200":  "https://zenodo.org/api/iiif/record:10286141:thumb0.jpeg/full/%5E1200,/0/default.jpg"
+                                 },
+                  "latest":  "https://zenodo.org/api/records/10286141/versions/latest",
+                  "latest_html":  "https://zenodo.org/records/10286141/latest",
+                  "versions":  "https://zenodo.org/api/records/10286141/versions",
+                  "draft":  "https://zenodo.org/api/records/10286141/draft",
+                  "access_links":  "https://zenodo.org/api/records/10286141/access/links",
+                  "access_grants":  "https://zenodo.org/api/records/10286141/access/grants",
+                  "access_users":  "https://zenodo.org/api/records/10286141/access/users",
+                  "access_request":  "https://zenodo.org/api/records/10286141/access/request",
+                  "access":  "https://zenodo.org/api/records/10286141/access",
+                  "communities":  "https://zenodo.org/api/records/10286141/communities",
+                  "communities-suggestions":  "https://zenodo.org/api/records/10286141/communities-suggestions",
+                  "request_deletion":  "https://zenodo.org/api/records/10286141/request-deletion",
+                  "file_modification":  "https://zenodo.org/api/records/10286141/file-modification",
+                  "quota_increase":  "https://zenodo.org/api/records/10286141/quota-increase",
+                  "requests":  "https://zenodo.org/api/records/10286141/requests"
+              },
+    "updated":  "2026-05-26T05:35:49.337510+00:00",
+    "recid":  "10286141",
+    "revision":  9,
+    "files":  [
+                  {
+                      "id":  "858bfed4-1bcc-4f34-aa02-01914f5c0d12",
+                      "key":  "3e7bf4482e28420fbb2ca71c90dfaf23.glb",
+                      "size":  16633708,
+                      "checksum":  "md5:c83401b87f477d57035a96e8cb95df03",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/3e7bf4482e28420fbb2ca71c90dfaf23.glb/content"
+                                }
+                  },
+                  {
+                      "id":  "5e756d05-46f5-4ed2-89a8-4341a0332a3d",
+                      "key":  "thumb0.jpeg",
+                      "size":  394962,
+                      "checksum":  "md5:d6879b3a637b1802c5b6c368780d075b",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/thumb0.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "4dfcb3a2-1e75-4bdc-a256-f27fba741aa9",
+                      "key":  "thumb2.jpeg",
+                      "size":  54739,
+                      "checksum":  "md5:e7a5508a194a6e67d9bda7efd3260b8f",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/thumb2.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "8eb370df-8726-4831-9870-0f66e00cdcf8",
+                      "key":  "thumb3.jpeg",
+                      "size":  8554,
+                      "checksum":  "md5:93235726d8ee6945b28307f6f13a9204",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/thumb3.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "6f592777-8124-44da-ba1d-51a18045b0fb",
+                      "key":  "thumb1.jpeg",
+                      "size":  99948,
+                      "checksum":  "md5:2b1fb0aca99b399eab6bc43db896db0c",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/thumb1.jpeg/content"
+                                }
+                  },
+                  {
+                      "id":  "7739c6c0-09f0-48f4-a9f3-c166a535346e",
+                      "key":  "thumb4.jpeg",
+                      "size":  1106,
+                      "checksum":  "md5:42d843ff776d96e70be4370864df21fa",
+                      "links":  {
+                                    "self":  "https://zenodo.org/api/records/10286141/files/thumb4.jpeg/content"
+                                }
+                  }
+              ],
+    "swh":  {
+
+            },
+    "owners":  [
+                   {
+                       "id":  "1197195"
+                   }
+               ],
+    "status":  "published",
+    "stats":  {
+                  "downloads":  71,
+                  "unique_downloads":  71,
+                  "views":  38,
+                  "unique_views":  38,
+                  "version_downloads":  71,
+                  "version_unique_downloads":  71,
+                  "version_unique_views":  38,
+                  "version_views":  38
+              },
+    "state":  "done",
+    "submitted":  true
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "path": "public/textures/red_brick_pavers_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_pavers/red_brick_pavers_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/red_brick_pavers",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/red_brick_pavers_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_pavers/red_brick_pavers_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/red_brick_pavers",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/red_brick_pavers_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_pavers/red_brick_pavers_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/red_brick_pavers",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/brown_planks_03_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_planks_03/brown_planks_03_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/brown_planks_03",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/brown_planks_03_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_planks_03/brown_planks_03_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/brown_planks_03",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/brown_planks_03_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_planks_03/brown_planks_03_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/brown_planks_03",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/bark_brown_01_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_01/bark_brown_01_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/bark_brown_01",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/bark_brown_01_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_01/bark_brown_01_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/bark_brown_01",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/bark_brown_01_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_01/bark_brown_01_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/bark_brown_01",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/rock_boulder_dry_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/rock_boulder_dry",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/rock_boulder_dry_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/rock_boulder_dry",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/rock_boulder_dry_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_boulder_dry/rock_boulder_dry_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/rock_boulder_dry",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/forest_ground_04_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/forest_ground_04",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/forest_ground_04_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/forest_ground_04",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/forest_ground_04_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/forest_ground_04",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/clay_roof_tiles_color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles/clay_roof_tiles_diff_1k.jpg",
+    "asset": "https://polyhaven.com/a/clay_roof_tiles",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/clay_roof_tiles_normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles/clay_roof_tiles_nor_gl_1k.jpg",
+    "asset": "https://polyhaven.com/a/clay_roof_tiles",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/clay_roof_tiles_roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_roof_tiles/clay_roof_tiles_rough_1k.jpg",
+    "asset": "https://polyhaven.com/a/clay_roof_tiles",
+    "license": "CC0-1.0"
+  },
+  {
+    "path": "public/textures/morning-sky.hdr",
+    "source": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+    "asset": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+    "license": "CC0-1.0"
+  }
+]
