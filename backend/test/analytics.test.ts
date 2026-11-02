@@ -31,12 +31,22 @@ test('private statistics require configured credentials and exclude themselves f
   assert.equal(visitStats().totalViews,count+2);assert.equal(visitStats().totalBrowsers,3);
  }finally{server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));delete process.env.ANALYTICS_PATH;delete process.env.ANALYTICS_PASSWORD;}
 });
-test('management stays disabled without a strong configured password',async()=>{
- process.env.ANALYTICS_PATH='my-private-stats-123';process.env.ANALYTICS_PASSWORD='short';
+test('management stays disabled without a configured password',async()=>{
+ process.env.ANALYTICS_PATH='my-private-stats-123';process.env.ANALYTICS_PASSWORD='';
  const app=express();app.use('/api',analyticsRouter());const server=createServer(app);
  await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
  try{
   const {port}=server.address() as {port:number};
   assert.equal((await fetch(`http://127.0.0.1:${port}/api/private/my-private-stats-123`)).status,404);
+ }finally{server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));delete process.env.ANALYTICS_PATH;delete process.env.ANALYTICS_PASSWORD;}
+});
+test('short private paths and passwords are accepted but still require authentication',async()=>{
+ process.env.ANALYTICS_PATH='short';process.env.ANALYTICS_PASSWORD='short';
+ const app=express();app.use('/api',analyticsRouter());const server=createServer(app);
+ await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));
+ try{
+  const {port}=server.address() as {port:number},url=`http://127.0.0.1:${port}/api/private/short`;
+  assert.equal((await fetch(url)).status,401);
+  assert.equal((await fetch(url,{headers:{Authorization:'Basic '+Buffer.from('admin:short').toString('base64')}})).status,200);
  }finally{server.closeAllConnections();await new Promise<void>(r=>server.close(()=>r()));delete process.env.ANALYTICS_PATH;delete process.env.ANALYTICS_PASSWORD;}
 });

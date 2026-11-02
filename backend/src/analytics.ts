@@ -41,7 +41,7 @@ export function analyticsRouter(){
   res.setHeader('Cache-Control','no-store');res.status(204).end();
  });
  const slug=process.env.ANALYTICS_PATH,password=process.env.ANALYTICS_PASSWORD;
- if(!slug||!password||password.length<16||!/^[a-zA-Z0-9_-]{12,100}$/.test(slug))return router;
+ if(!slug||!password||!/^[a-zA-Z0-9_-]{1,100}$/.test(slug))return router;
  const path=`/private/${slug}`;
  router.use(path,rateLimit({windowMs:60000,limit:30}), (req,res,next)=>{
   res.setHeader('Cache-Control','no-store');res.setHeader('X-Robots-Tag','noindex, nofollow');
