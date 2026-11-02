@@ -79,7 +79,11 @@ export class PublicTempleRoom extends Room {
   );
   onCreate() {
     const botCount=Number(process.env.BOT_COUNT??(process.env.NODE_ENV==='production'?'20':'0'));
-    this.bots=new BotPopulation(this.mapId,Math.min(this.maxClients,botCount));
+    this.bots=new BotPopulation(this.mapId,Math.min(this.maxClients,botCount),Math.random,id=>{
+      const now=Date.now();
+      if(now-this.bellAt<60000)return;
+      this.bellAt=now;this.broadcast('bell',{playerId:id});
+    });
     this.listen('resync',(c)=>this.snapshot(c));
     this.listen('quests',(c,m)=>{
       const a=this.actors.get(c.sessionId);if(!a)return;

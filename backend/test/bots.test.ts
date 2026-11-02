@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {BotPopulation} from '../src/realtime/bots.js';
 import {walkable, type MapId} from '../src/realtime/maps.js';
 
-function random(){let seed=19;return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
+function random(seed=19){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
 for(const map of ['courtyard','hall','dining'] as MapId[]){
  test(`${map}: visitors move safely, perform activities and fluctuate gradually`,()=>{
   const population=new BotPopulation(map,20,random());
@@ -24,7 +24,7 @@ for(const map of ['courtyard','hall','dining'] as MapId[]){
    }
   }
   assert.ok(actions.has('walk'));
-  assert.ok(actions.has(map==='courtyard'?'water':map==='hall'?'meditate':'eat'));
+  assert.ok(map==='hall'?actions.has('meditate')||actions.has('listen'):actions.has(map==='courtyard'?'water':'eat'));
   assert.ok(counts.size>1);assert.ok([...counts].every(n=>n>=15&&n<=25));
  });
 }
@@ -60,9 +60,41 @@ test('walking visitors keep their speed through straight route waypoints',()=>{
    const distance=Math.hypot(p.x-previous.x,p.z-previous.z);
    assert.ok(distance>0.001,'walking cannot pause at a waypoint');
    if(Math.abs(p.rotationY-previous.rotationY)<.001){
-    assert.ok(Math.abs(distance-.24)<.001,`cruising speed dropped to ${distance}`);checked++;
+    assert.ok(Math.abs(distance-.08)<.001,`cruising speed dropped to ${distance}`);checked++;
    }
   }
  }
  assert.ok(checked>100);
+});
+for(const map of ['hall','dining'] as MapId[])test(`${map}: most visitors start seated and remain settled`,()=>{
+ const population=new BotPopulation(map,20,random());
+ assert.ok(population.players.filter(p=>p.seat).length>=15);
+ for(let now=0;now<600000;now+=100){
+  population.update(now,100,[],100);
+  const players=population.players;
+  assert.ok(players.filter(p=>p.seat).length>=Math.floor(players.length*.7),'most visitors stay seated');
+  assert.ok(players.filter(p=>p.action==='walk').length<=Math.max(1,Math.floor(players.length*.2)),'only a few visitors walk at once');
+ }
+});
+test('courtyard visitors mostly rest or do chores, with occasional shared bell events',()=>{
+ const bells:number[]=[];let time=0;
+ const population=new BotPopulation('courtyard',20,random(),()=>bells.push(time));
+ const actions=new Set(population.players.map(p=>p.action));
+ assert.ok(actions.has('sweep')&&actions.has('water'));
+ for(time=0;time<360000;time+=100){
+  population.update(time,100,[],100);
+  assert.ok(population.players.filter(p=>p.action==='walk').length<=Math.max(1,Math.floor(population.players.length*.2)));
+ }
+ assert.ok(bells.length>=1&&bells.length<=4);
+ for(let i=1;i<bells.length;i++)assert.ok(bells[i]-bells[i-1]>=90000);
+});
+test('new arrivals respect seats reserved by visitors still walking to their meal',()=>{
+ for(let seed=1;seed<=30;seed++){
+  const population=new BotPopulation('dining',20,random(seed));
+  for(let now=0;now<360000;now+=100){
+   population.update(now,100,[],50);
+   const seats=population.players.map(p=>p.seat).filter(Boolean);
+   assert.equal(new Set(seats).size,seats.length,`duplicate dining seat with seed ${seed} at ${now}`);
+  }
+ }
 });

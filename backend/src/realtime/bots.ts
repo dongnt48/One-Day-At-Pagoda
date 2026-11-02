@@ -4,7 +4,7 @@ import {gatheringAt} from './gathering.js';
 export type BotPlayer={id:string;displayName:string;avatar:string;x:number;y:number;z:number;rotationY:number;action:string;isBot:boolean;seat?:string;tray?:boolean;title?:string};
 type Point={x:number;z:number};
 type Destination=Point&{action:string;seat?:string;tray?:boolean;duration:number};
-type Bot={player:BotPlayer;path:Point[];destination?:Destination;until:number;meal:'collect'|'eat'|'return'};
+type Bot={player:BotPlayer;path:Point[];destination?:Destination;until:number;meal:'collect'|'eat'|'return';settled:boolean;bellKeeper:boolean};
 const names=['An Nhiên','Thiện Tâm','Minh An','Tịnh Tâm','Diệu An','Tuệ Minh','Thanh Bình','Tâm An','Thiện Hòa','Diệu Hương'];
 
 /** Ambient visitors have no sockets, guest identities, social state or quests. */
@@ -17,7 +17,7 @@ export class BotPopulation{
  private grid=new Map<string,Point>();
  private edges=new Map<string,string[]>();
  private baseline:number;
- constructor(private mapId:MapId,count:number,private random= Math.random){
+ constructor(private mapId:MapId,count:number,private random= Math.random,private onBell?:(id:string)=>void){
   this.baseline=Number.isFinite(count)?Math.max(0,Math.min(25,Math.floor(count))):0;
   this.target=this.baseline;
   if(!this.baseline)return;
@@ -37,10 +37,23 @@ export class BotPopulation{
   return true;
  }
  private pick<T>(items:T[]):T{return items[Math.floor(this.random()*items.length)];}
- private add(){
+ private add(humans:ReadonlyArray<{seat?:string}>=[]){
   const point=this.pick([...this.grid.values()]);if(!point)return;
   const index=this.serial++;
-  this.bots.push({player:{id:`npc-${this.mapId}-${index}`,displayName:`${names[index%names.length]} · NPC`,avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true,title:'Khách viếng chùa · NPC'},path:[],until:0,meal:'collect'});
+  const bot:Bot={player:{id:`npc-${this.mapId}-${index}`,displayName:`${names[index%names.length]} · NPC`,avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true,title:'Khách viếng chùa · NPC'},path:[],until:0,meal:'collect',settled:this.mapId!=='courtyard'&&index%5!==0,bellKeeper:this.mapId==='courtyard'&&index>=2&&!this.bots.some(b=>b.bellKeeper)};
+  if(bot.settled){
+   const occupied=new Set([...humans.map(p=>p.seat),...this.bots.flatMap(b=>[b.player.seat,b.destination?.seat])]);
+   const seats=mapSpots[this.mapId].filter(s=>s.id.startsWith(this.mapId==='hall'?'listen-':'eat-')&&!occupied.has(s.id));
+   if(seats.length){const seat=this.pick(seats);Object.assign(bot.player,{x:seat.x,z:seat.z,seat:seat.id,action:this.mapId==='hall'?'meditate':'eat',tray:this.mapId==='dining'});bot.meal='return';bot.until=-(180000+this.random()*360000);}
+  }else if(this.mapId==='courtyard'&&(index%10>=2||bot.bellKeeper)){
+   const activity=bot.bellKeeper?'bell':index%10<5?'sweep':index%10<8?'water':'idle';
+   const spot=activity==='idle'?point:this.pick(mapSpots.courtyard.filter(s=>activity==='water'?s.id==='water'||s.id.startsWith('garden-'):s.id===activity));
+   const nearby=[...this.grid.values()].filter(p=>Math.hypot(p.x-spot.x,p.z-spot.z)<3&&!this.bots.some(b=>Math.hypot(b.player.x-p.x,b.player.z-p.z)<.8));
+   if(nearby.length)Object.assign(bot.player,this.pick(nearby));
+   bot.player.action=activity==='bell'?'idle':activity;
+   bot.until=-(bot.bellKeeper?45000+this.random()*30000:60000+this.random()*180000);
+  }
+  this.bots.push(bot);
  }
  private route(start:Point,end:Point):Point[]|undefined{
   const near=(p:Point)=>[...this.grid.entries()].filter(([,v])=>Math.hypot(v.x-p.x,v.z-p.z)<1.6&&this.clear(p,v)).sort((a,b)=>Math.hypot(a[1].x-p.x,a[1].z-p.z)-Math.hypot(b[1].x-p.x,b[1].z-p.z))[0];
@@ -68,7 +81,12 @@ export class BotPopulation{
  }
  private choose(bot:Bot,occupied:Set<string>):Destination|undefined{
   const spots=mapSpots[this.mapId];
-  const duration=8000+this.random()*22000;
+  const duration=120000+this.random()*240000;
+  if(bot.bellKeeper){
+   if(bot.player.action==='bell')return {x:bot.player.x,z:bot.player.z,action:'idle',duration:90000+this.random()*60000};
+   const bell=spots.find(s=>s.id==='bell')!;
+   return {x:bell.x,z:bell.z+.4,action:'bell',duration:2200};
+  }
   if(this.mapId==='dining'){
    if(bot.meal==='eat'){
     const seats=spots.filter(s=>s.id.startsWith('eat-')&&!occupied.has(s.id));
@@ -76,11 +94,11 @@ export class BotPopulation{
     const seat=this.pick(seats);return {...seat,seat:seat.id,action:'eat',tray:true,duration};
    }
    const spot=spots.find(s=>s.id===(bot.meal==='collect'?'meal':'return-tray'))!;
-   return {x:spot.x,z:spot.z+.9,action:'idle',tray:bot.meal==='collect',duration:1800};
+   return {x:spot.x,z:spot.z+.9,action:'idle',tray:bot.meal==='collect',duration:15000+this.random()*15000};
   }
-  if(this.random()<.3){const point=this.pick([...this.grid.values()]);return {...point,action:'idle',duration:3000+this.random()*5000};}
+  if(this.random()<.5){const point=this.pick([...this.grid.values()].filter(p=>Math.hypot(p.x-bot.player.x,p.z-bot.player.z)<5));return {...point,action:'idle',duration:45000+this.random()*75000};}
   if(this.mapId==='hall'){
-   const candidates=spots.filter(s=>(s.id.startsWith('meditate-')||s.id.startsWith('listen-')||s.id.startsWith('pray'))&&!occupied.has(s.id));
+   const candidates=spots.filter(s=>(bot.settled?s.id.startsWith('listen-'):s.id.startsWith('pray'))&&!occupied.has(s.id));
    const spot=this.pick(candidates);if(!spot)return;
    if(spot.id.startsWith('pray'))return {x:spot.x,z:spot.z+1,action:'pray',duration:12000};
    return {...spot,seat:spot.id,action:'meditate',duration};
@@ -93,35 +111,44 @@ export class BotPopulation{
   const available=Math.max(0,capacity-humans.length);
   // Yield immediately when humans need room; normal changes are staggered.
   if(this.bots.length>available)this.bots.length=available;
-  if(!this.nextTarget)this.nextTarget=now+30000;
+  if(!this.nextTarget)this.nextTarget=now+60000;
   if(now>=this.nextTarget){
    this.target=Math.max(0,this.baseline-5)+Math.floor(this.random()*(Math.min(25,this.baseline+5)-Math.max(0,this.baseline-5)+1));
-   this.nextTarget=now+30000+this.random()*30000;
+   this.nextTarget=now+60000+this.random()*60000;
   }
   const desired=Math.min(this.target,available);
   if(now>=this.nextArrival&&this.bots.length!==desired){
-   if(this.bots.length<desired)this.add();else this.bots.pop();
-   this.nextArrival=now+3000+this.random()*4000;
+   if(this.bots.length<desired)this.add(humans);else this.bots.pop();
+   this.nextArrival=now+10000+this.random()*10000;
   }
   const humanSeats=new Set(humans.map(p=>p.seat).filter((s):s is string=>!!s));
   const occupied=new Set([...humanSeats,...this.bots.flatMap(b=>b.destination?.seat?[b.destination.seat]:b.player.seat?[b.player.seat]:[])]);
+  let walkers=this.bots.filter(b=>b.destination).length;
+  const walkingLimit=Math.max(1,Math.floor(this.bots.length*.2));
+  let moving=0;
   for(const bot of this.bots){
    const p=bot.player;
+   if(bot.until<0)bot.until=now-bot.until;
    if((p.seat&&humanSeats.has(p.seat))||(bot.destination?.seat&&humanSeats.has(bot.destination.seat))){
     bot.destination=undefined;bot.path=[];p.seat=undefined;p.action='idle';bot.until=now+1000;
    }
    if(p.seat?.startsWith('listen-'))p.action=gatheringAt(now).active?'listen':'meditate';
    if(now<bot.until)continue;
+   if(bot.settled&&p.seat){bot.until=now+180000+this.random()*360000;continue;}
    if(!bot.destination){
+    if(walkers>=walkingLimit){bot.until=now+5000+this.random()*10000;continue;}
     if(p.seat)occupied.delete(p.seat);p.seat=undefined;
     const destination=this.choose(bot,occupied);
     const path=destination&&this.route(p,destination);
     if(!destination||!path){bot.until=now+2000;continue;}
     bot.destination=destination;bot.path=path;
+    walkers++;
     if(destination.seat)occupied.add(destination.seat);
    }
    // Spend the entire movement budget, carrying the remainder past corners.
-   let remaining=2.4*Math.max(0,Math.min(dt/1000,.1));
+   if(moving>=walkingLimit){p.action='idle';continue;}
+   moving++;
+   let remaining=.8*Math.max(0,Math.min(dt/1000,.1));
    while(bot.path.length){
     const next=bot.path[0],distance=Math.hypot(next.x-p.x,next.z-p.z);
     if(distance<.000001){p.x=next.x;p.z=next.z;bot.path.shift();continue;}
@@ -133,9 +160,11 @@ export class BotPopulation{
    }
    if(!bot.path.length){
     const destination=bot.destination!;p.action=destination.action;p.seat=destination.seat;p.rotationY=Math.PI;
+    if(p.action==='bell')this.onBell?.(p.id);
     if(destination.tray!==undefined)p.tray=destination.tray;
     if(this.mapId==='dining')bot.meal=bot.meal==='collect'?'eat':bot.meal==='eat'?'return':'collect';
     bot.until=now+destination.duration;bot.destination=undefined;
+    walkers--;
    }
   }
  }

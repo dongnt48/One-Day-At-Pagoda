@@ -9,3 +9,5 @@ NPCs follow collision-checked paths. Courtyard visitors sweep and water plants; 
 Production defaults to 20 NPCs; compose.bots.yaml forwards BOT_COUNT (default 20), and BOT_COUNT=0 disables them. An override preserves the manually configured VPS ports in compose.yaml. Count varies by five either side of the configured baseline and leaves room for humans near capacity. Existing standalone tests and local development default to disabled unless configured.
 
 Do not deploy or modify the VPS automatically. Deliver code, tests and deployment instructions.
+
+User refinement: quiet, slow routines rather than constant walking. At most ~20% walking at once, at 0.8 m/s. Seed about 80% of hall/dining visitors directly in unique listening/eating seats and keep settled visitors seated until human priority or departure. Courtyard seeds resting and chore visitors, plus a single bell keeper with 90–150 seconds between turns; bell events use the room's shared audio broadcast and respect recent human bell activity. Population changes and activity pauses are slower as well.
