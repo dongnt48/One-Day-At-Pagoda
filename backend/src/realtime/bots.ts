@@ -18,7 +18,7 @@ export class BotPopulation{
  private edges=new Map<string,string[]>();
  private baseline:number;
  constructor(private mapId:MapId,count:number,private random= Math.random,private onBell?:(id:string)=>void){
-  this.baseline=Number.isFinite(count)?Math.max(0,Math.min(25,Math.floor(count))):0;
+  this.baseline=Number.isFinite(count)?Math.max(0,Math.min(this.mapId==='courtyard'?6:25,Math.floor(count))):0;
   this.target=this.baseline;
   if(!this.baseline)return;
   const map=maps[mapId];
@@ -40,13 +40,13 @@ export class BotPopulation{
  private add(humans:ReadonlyArray<{seat?:string}>=[]){
   const point=this.pick([...this.grid.values()]);if(!point)return;
   const index=this.serial++;
-  const bot:Bot={player:{id:`npc-${this.mapId}-${index}`,displayName:`${names[index%names.length]} · NPC`,avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true,title:'Khách viếng chùa · NPC'},path:[],until:0,meal:'collect',settled:this.mapId!=='courtyard'&&index%5!==0,bellKeeper:this.mapId==='courtyard'&&index>=2&&!this.bots.some(b=>b.bellKeeper)};
+  const bot:Bot={player:{id:`npc-${this.mapId}-${index}`,displayName:names[index%names.length],avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true,title:'Khách viếng chùa'},path:[],until:0,meal:'collect',settled:this.mapId!=='courtyard'&&index%5!==0,bellKeeper:this.mapId==='courtyard'&&index>=2&&!this.bots.some(b=>b.bellKeeper)};
   if(bot.settled){
    const occupied=new Set([...humans.map(p=>p.seat),...this.bots.flatMap(b=>[b.player.seat,b.destination?.seat])]);
    const seats=mapSpots[this.mapId].filter(s=>s.id.startsWith(this.mapId==='hall'?'listen-':'eat-')&&!occupied.has(s.id));
    if(seats.length){const seat=this.pick(seats);Object.assign(bot.player,{x:seat.x,z:seat.z,seat:seat.id,action:this.mapId==='hall'?'meditate':'eat',tray:this.mapId==='dining'});bot.meal='return';bot.until=-(180000+this.random()*360000);}
   }else if(this.mapId==='courtyard'&&(index%10>=2||bot.bellKeeper)){
-   const activity=bot.bellKeeper?'bell':index%10<5?'sweep':index%10<8?'water':'idle';
+   const activity=bot.bellKeeper?'bell':index%10===3?'sweep':index%10===4?'water':'idle';
    const spot=activity==='idle'?point:this.pick(mapSpots.courtyard.filter(s=>activity==='water'?s.id==='water'||s.id.startsWith('garden-'):s.id===activity));
    const nearby=[...this.grid.values()].filter(p=>Math.hypot(p.x-spot.x,p.z-spot.z)<3&&!this.bots.some(b=>Math.hypot(b.player.x-p.x,b.player.z-p.z)<.8));
    if(nearby.length)Object.assign(bot.player,this.pick(nearby));
@@ -113,7 +113,9 @@ export class BotPopulation{
   if(this.bots.length>available)this.bots.length=available;
   if(!this.nextTarget)this.nextTarget=now+60000;
   if(now>=this.nextTarget){
-   this.target=Math.max(0,this.baseline-5)+Math.floor(this.random()*(Math.min(25,this.baseline+5)-Math.max(0,this.baseline-5)+1));
+   const minimum=this.mapId==='courtyard'?Math.min(5,this.baseline):Math.max(0,this.baseline-5);
+   const maximum=this.mapId==='courtyard'?this.baseline:Math.min(25,this.baseline+5);
+   this.target=this.mapId==='courtyard'?(this.target===maximum?minimum:maximum):minimum+Math.floor(this.random()*(maximum-minimum+1));
    this.nextTarget=now+60000+this.random()*60000;
   }
   const desired=Math.min(this.target,available);

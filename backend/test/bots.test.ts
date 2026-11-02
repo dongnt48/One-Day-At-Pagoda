@@ -8,8 +8,8 @@ for(const map of ['courtyard','hall','dining'] as MapId[]){
  test(`${map}: visitors move safely, perform activities and fluctuate gradually`,()=>{
   const population=new BotPopulation(map,20,random());
   const positions=new Map(population.players.map(p=>[p.id,{x:p.x,z:p.z}]));
-  const actions=new Set<string>();const counts=new Set<number>();let previous=20;
-  assert.equal(population.players.length,20);
+  const actions=new Set<string>();const counts=new Set<number>();let previous=map==='courtyard'?6:20;
+  assert.equal(population.players.length,map==='courtyard'?6:20);
   for(let now=0;now<240000;now+=100){
    population.update(now,100,[],100);
    const players=population.players;counts.add(players.length);
@@ -25,7 +25,7 @@ for(const map of ['courtyard','hall','dining'] as MapId[]){
   }
   assert.ok(actions.has('walk'));
   assert.ok(map==='hall'?actions.has('meditate')||actions.has('listen'):actions.has(map==='courtyard'?'water':'eat'));
-  assert.ok(counts.size>1);assert.ok([...counts].every(n=>n>=15&&n<=25));
+  assert.ok(counts.size>1);assert.ok([...counts].every(n=>map==='courtyard'?n>=5&&n<=6:n>=15&&n<=25));
  });
 }
 test('disabled population stays empty',()=>{
@@ -46,7 +46,7 @@ test('a moderately populated room retains ambient visitors when capacity allows'
  const population=new BotPopulation('courtyard',20,random());
  const humans=Array.from({length:25},()=>({}));
  for(let now=0;now<120000;now+=100)population.update(now,100,humans,100);
- assert.ok(population.players.length>=15&&population.players.length<=25);
+ assert.ok(population.players.length>=5&&population.players.length<=6);
 });
 test('walking visitors keep their speed through straight route waypoints',()=>{
  const population=new BotPopulation('hall',20,random());

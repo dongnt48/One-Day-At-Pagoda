@@ -30,7 +30,7 @@ test('two real clients see the same NPC identities and movement in all three map
    const a=await connect(type),b=await connect(type);assert.equal(a.room.roomId,b.room.roomId);
    await delay(500);
    const bots=(state:typeof a.state)=>state.players.filter(p=>p.isBot).map(p=>p.id).sort();
-   assert.equal(bots(a.state).length,20);assert.deepEqual(bots(a.state),bots(b.state));
+   assert.equal(bots(a.state).length,type==='public_temple'?6:20);assert.deepEqual(bots(a.state),bots(b.state));
    assert.equal(a.state.players.filter(p=>!p.isBot).length,2);
    assert.ok(a.state.changes>0&&b.state.changes>0,'NPC movement travels over the real patch protocol');
    await a.room.leave();rooms.splice(rooms.indexOf(a.room),1);

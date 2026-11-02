@@ -2,6 +2,8 @@
 
 ## Khách viếng chùa tự động (NPC)
 
+Sân chùa giới hạn 5–6 khách tự động; chính điện và nhà ăn vẫn giữ số lượng theo `BOT_COUNT`. Tên và danh hiệu không hiển thị chữ NPC; bộ đếm tách người chơi và khách viếng.
+
 Production bật mặc định 20 NPC: mỗi phòng đang hoạt động có khoảng 15–25 NPC, số lượng thay đổi từng người theo thời gian. NPC đi lại tránh vật cản, quét sân/tưới cây, lễ Phật/tĩnh tâm/nghe pháp hoặc nhận cơm–ăn–trả khay tùy bản đồ. Mọi người trong cùng phòng nhìn thấy cùng NPC. Số người online và danh sách kết bạn chỉ tính người thật; NPC có nhãn riêng và nhường ghế cho người chơi.
 
 Nhịp sinh hoạt chậm: tối đa khoảng 20% NPC đi cùng lúc, tốc độ 0,8 m/s. Sân chùa có khách đứng nghỉ, quét lá, tưới cây và một người thỉnh chuông thưa (nghỉ ít nhất 90 giây giữa hai lượt). Chính điện có khoảng 80% ngồi sẵn nghe pháp/tĩnh tâm; nhà ăn có khoảng 80% ngồi ăn sẵn. Khách ngồi yên ở chỗ và tiếp tục sinh hoạt lâu, chỉ nhường ghế khi người thật cần. Các khách còn lại có thể đi dạo ngắn hoặc làm hoạt động vài phút, không chạy liên tục quanh map.

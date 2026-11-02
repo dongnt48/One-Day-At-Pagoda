@@ -395,7 +395,7 @@ export function App() {
     if (next) audio.current.start(volume);
   }
   function select(id: string) {
-    if(players.some(p=>p.id===id&&p.isBot)){setNotice('Đây là khách viếng chùa tự động (NPC).');return;}
+    if(players.some(p=>p.id===id&&p.isBot)){setNotice('Đây là khách viếng chùa tự động.');return;}
     if (id === guest?.id) return;
     setSelected(id);
     setSocialTab("people");
@@ -439,7 +439,7 @@ export function App() {
           {page === "game" ? (
             <span className="room-badge">
               <span className="status-dot" />
-              <span className="room-name">{maps[mapId].label}</span> <i /> <span>{humanPlayers.length}/{capacity}{players.length>humanPlayers.length?` · ${players.length-humanPlayers.length} NPC`:''}</span>
+              <span className="room-name">{maps[mapId].label}</span> <i /> <span>{humanPlayers.length}/{capacity}{players.length>humanPlayers.length?` · ${players.length-humanPlayers.length} khách viếng`:''}</span>
             </span>
           ) : (
             <span className="eyebrow desktop">
