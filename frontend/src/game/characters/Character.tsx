@@ -11,6 +11,7 @@ import {createPrayerPose,prayerAnimation} from './prayerPose';
 import {StrawBroom,WateringCan} from './HandTools';
 import {createPoseBaseline} from './poseBaseline';
 import {hallSurfaceHeight} from '../scene/hallSurface';
+import {followBotPosition} from './botMotion';
 export function Model({
   avatar,
   action = "idle",
@@ -29,11 +30,9 @@ export function Model({
   const gltf = useGLTF(`/models/${avatar}_lam.glb`);
   const model = useMemo(() => {
     const instance = clone(gltf.scene);
-    instance.traverse((o) => {
-      o.castShadow = castShadow;
-    });
     return instance;
-  }, [gltf,castShadow]);
+  }, [gltf]);
+  useLayoutEffect(()=>{model.traverse(o=>{o.castShadow=castShadow;});},[model,castShadow]);
   useLayoutEffect(()=>{setBarefoot(model,barefoot);},[model,barefoot]);
   const clips=useMemo(()=>[...gltf.animations,...kitchenAnimations(gltf.animations),...prayerAnimation(gltf.animations)],[gltf.animations]);
   const mixer=useMemo(()=>new AnimationMixer(model),[model]);
@@ -153,6 +152,8 @@ export function Character({
   castShadow?: boolean;
 }) {
   const group = useRef<Group>(null);
+  const labelMounted=useRef(false),labelVisible=!!(showLabel||bubble);
+  if(labelVisible)labelMounted.current=true;
   const initialPosition = useRef<[number, number, number]>([
     player.x,
     barefoot?hallSurfaceHeight(player.x,player.z):0,
@@ -162,9 +163,12 @@ export function Character({
   useFrame((_, dt) => {
     const g = group.current;
     if (!g) return;
-    const alpha = 1 - Math.exp(-16 * dt);
-    g.position.x = MathUtils.lerp(g.position.x, player.x, alpha);
-    g.position.z = MathUtils.lerp(g.position.z, player.z, alpha);
+    const alpha = 1 - Math.exp(-16 * (player.isBot?Math.min(dt,.05):dt));
+    if(player.isBot)followBotPosition(g.position,player,dt);
+    else{
+      g.position.x = MathUtils.lerp(g.position.x, player.x, alpha);
+      g.position.z = MathUtils.lerp(g.position.z, player.z, alpha);
+    }
     g.position.y = barefoot?hallSurfaceHeight(g.position.x,g.position.z):0;
     g.rotation.y +=
       Math.atan2(
@@ -187,8 +191,9 @@ export function Character({
       }}
     >
       <Model avatar={player.avatar} action={player.action} tray={player.tray} barefoot={barefoot} animationFps={animationFps} castShadow={castShadow}/>
-      {(showLabel||bubble)&&<Html
+      {labelMounted.current&&<Html
         position={[0, 1.95, 0]}
+        style={{display:labelVisible?'':'none'}}
         center
         zIndexRange={[10, 0]}
       >

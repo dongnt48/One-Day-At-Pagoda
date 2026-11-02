@@ -6,7 +6,6 @@ import type { Room } from "@colyseus/sdk";
 import { MapScene } from "./MapScene";
 import {Crowd} from '../characters/Crowd';
 import type {MapId} from '../world';
-import { Character } from "../characters/Character";
 import { Controller } from "../controls/Controller";
 import type { Player, ChatMessage } from "../types";
 import {activeChatBubbles} from '../multiplayer/chatBubbles';
@@ -77,7 +76,6 @@ export function World({
   const ordered=[...players].sort((a,b)=>Math.hypot(a.x-(self?.x??0),a.z-(self?.z??0))-Math.hypot(b.x-(self?.x??0),b.z-(self?.z??0)));
   const detailed=ordered.filter((p,i)=>p.id===me||(i<(touch?12:24)&&Math.hypot(p.x-(self?.x??0),p.z-(self?.z??0))<18));
   const detailIds=new Set(detailed.map(p=>p.id));
-  const distant=players.filter(p=>!detailIds.has(p.id));
   return (
     <Boundary>
       <Canvas
@@ -106,18 +104,7 @@ export function World({
         <Suspense fallback={null}>
           <Environment files="/textures/morning-sky.hdr" environmentIntensity={0.55}/>
           <MapScene key={mapId} mapId={mapId} room={room}/>
-          {room&&distant.length>0&&<Crowd players={distant} onSelect={onSelect} barefoot={mapId==='hall'} bubbles={bubbles}/>}
-          {room &&
-            detailed.map((p) => (
-              <Character
-                key={p.id}
-                player={p}
-                barefoot={mapId==='hall'}
-                self={p.id === me}
-                onSelect={() => onSelect(p.id)}
-                bubble={bubbles.get(p.id)}
-              />
-            ))}
+          {room&&<Crowd key={`${room.roomId}-${mapId}`} players={players} onSelect={onSelect} barefoot={mapId==='hall'} bubbles={bubbles} detailedIds={detailIds} selfId={me}/>}
           {room && (
             <Controller
               key={room.roomId}
