@@ -8,6 +8,7 @@ import { gatheringAt } from '../realtime/gathering.js';
 import {QuestActivity} from '../quests/activity.js';
 import {progressFor,recordProgress,visitMap,releaseProgress,selectTitle,questSnapshot,questUpdate,equippedTitle} from '../quests/store.js';
 import {quests} from '../quests/catalog.js';
+import {BotPopulation} from '../realtime/bots.js';
 
 type Player = {
   id: string;
@@ -21,6 +22,7 @@ type Player = {
   tray?: boolean;
   seat?: string;
   title?: string;
+  isBot?: boolean;
 };
 type Actor = {
   player: Player;
@@ -54,6 +56,8 @@ export class PublicTempleRoom extends Room {
   bellAt=0;
   questSent=new Map<string,{revision:number;at:number}>();
   actors = new Map<string, Actor>();
+  bots?:BotPopulation;
+  get players():Player[]{return [...this.actors.values()].map(a=>a.player).concat(this.bots?.players??[]);}
   limits = new Map<string, { count: number; at: number }>();
   listen(type: string, handler: (c: Client, m: any) => void) {
     this.onMessage(type, (c, m) => {
@@ -74,7 +78,8 @@ export class PublicTempleRoom extends Room {
     Math.min(100, Number(process.env.ROOM_MAX_CLIENTS) || 100),
   );
   onCreate() {
-
+    const botCount=Number(process.env.BOT_COUNT??(process.env.NODE_ENV==='production'?'20':'0'));
+    this.bots=new BotPopulation(this.mapId,Math.min(this.maxClients,botCount));
     this.listen('resync',(c)=>this.snapshot(c));
     this.listen('quests',(c,m)=>{
       const a=this.actors.get(c.sessionId);if(!a)return;
@@ -244,6 +249,7 @@ export class PublicTempleRoom extends Room {
         a.player.action = a.dx || a.dz ? "walk" : "idle";
         this.trackQuests(a,now);
       }
+      this.bots?.update(now,dt,[...this.actors.values()].map(a=>a.player),this.maxClients);
       this.publish(now);
     }, 1000 / tick);
   }
@@ -260,7 +266,7 @@ export class PublicTempleRoom extends Room {
   }
   snapshot(client:Client){
 
-    client.send('state',{players:[...this.actors.values()].map(a=>a.player),capacity:this.maxClients,mapId:this.mapId,gathering:gatheringAt(Date.now())});
+    client.send('state',{players:this.players,capacity:this.maxClients,mapId:this.mapId,gathering:gatheringAt(Date.now())});
     this.sendQuests(client,true);
   }
   trackQuests(a:Actor,now:number,context?:string){
@@ -284,7 +290,7 @@ export class PublicTempleRoom extends Room {
   publish(now:number){
 
     const added:Player[]=[],changed:unknown[][]=[],next=new Map<string,string>();
-    for(const {player:p} of this.actors.values()){
+    for(const p of this.players){
       const row=[p.id,Math.round(p.x*1000)/1000,Math.round(p.z*1000)/1000,Math.round(p.rotationY*10000)/10000,p.action,p.seat||'',!!p.tray,p.title||''];
       const signature=JSON.stringify(row);next.set(p.id,signature);
       if(!this.previous.has(p.id))added.push({...p});
@@ -359,6 +365,7 @@ export class PublicTempleRoom extends Room {
       until: 0,
       ip: guest.ip,
     });
+    this.bots?.update(Date.now(),0,[...this.actors.values()].map(a=>a.player),this.maxClients);
     this.snapshot(client);
   }
   onDrop(client: Client, code?: number) {

@@ -1,0 +1,50 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {BotPopulation} from '../src/realtime/bots.js';
+import {walkable, type MapId} from '../src/realtime/maps.js';
+
+function random(){let seed=19;return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
+for(const map of ['courtyard','hall','dining'] as MapId[]){
+ test(`${map}: visitors move safely, perform activities and fluctuate gradually`,()=>{
+  const population=new BotPopulation(map,20,random());
+  const positions=new Map(population.players.map(p=>[p.id,{x:p.x,z:p.z}]));
+  const actions=new Set<string>();const counts=new Set<number>();let previous=20;
+  assert.equal(population.players.length,20);
+  for(let now=0;now<240000;now+=100){
+   population.update(now,100,[],100);
+   const players=population.players;counts.add(players.length);
+   assert.ok(Math.abs(players.length-previous)<=1,'visitors arrive or leave individually');previous=players.length;
+   const seats=players.map(p=>p.seat).filter(Boolean);
+   assert.equal(new Set(seats).size,seats.length,'seats cannot overlap');
+   for(const p of players){
+    assert.equal(p.isBot,true);assert.ok(walkable(p.x,p.z,map),`${p.id} at ${p.x},${p.z}`);
+    const before=positions.get(p.id);
+    if(before)assert.ok(Math.hypot(p.x-before.x,p.z-before.z)<=.251,'no teleporting');
+    positions.set(p.id,{x:p.x,z:p.z});actions.add(p.action);
+   }
+  }
+  assert.ok(actions.has('walk'));
+  assert.ok(actions.has(map==='courtyard'?'water':map==='hall'?'meditate':'eat'));
+  assert.ok(counts.size>1);assert.ok([...counts].every(n=>n>=15&&n<=25));
+ });
+}
+test('disabled population stays empty',()=>{
+ const population=new BotPopulation('hall',0,random());population.update(100000,100,[],100);
+ assert.equal(population.players.length,0);
+});
+test('real visitors take priority over NPC capacity and seats',()=>{
+ const population=new BotPopulation('dining',20,random());
+ for(let now=0;now<60000;now+=100)population.update(now,100,[],50);
+ const seated=population.players.find(p=>p.seat);assert.ok(seated);
+ const human={...seated,id:'human',isBot:false};
+ population.update(60000,100,[human],50);
+ assert.ok(population.players.every(p=>p.seat!==human.seat));
+ population.update(60100,100,Array.from({length:49},(_,i)=>({...human,id:`human-${i}`})),50);
+ assert.ok(population.players.length<=1);
+});
+test('a moderately populated room retains ambient visitors when capacity allows',()=>{
+ const population=new BotPopulation('courtyard',20,random());
+ const humans=Array.from({length:25},()=>({}));
+ for(let now=0;now<120000;now+=100)population.update(now,100,humans,100);
+ assert.ok(population.players.length>=15&&population.players.length<=25);
+});

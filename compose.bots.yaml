@@ -1,0 +1,5 @@
+# Add this override to your existing deployment to preserve its ports/proxy setup.
+services:
+  backend:
+    environment:
+      BOT_COUNT: ${BOT_COUNT:-20}

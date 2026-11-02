@@ -93,6 +93,7 @@ export function App() {
     chatLog = useRef<HTMLDivElement>(null),
     socialRef = useRef(social);
   const me = players.find((p) => p.id === guest?.id);
+  const humanPlayers = players.filter(p=>!p.isBot);
   const interaction=room?interactionForPlayer(mapId,me):undefined;
   useEffect(()=>leaveOnPageHide(window,()=>active.current,()=>{
     generation.current++;
@@ -394,6 +395,7 @@ export function App() {
     if (next) audio.current.start(volume);
   }
   function select(id: string) {
+    if(players.some(p=>p.id===id&&p.isBot)){setNotice('Đây là khách viếng chùa tự động (NPC).');return;}
     if (id === guest?.id) return;
     setSelected(id);
     setSocialTab("people");
@@ -437,7 +439,7 @@ export function App() {
           {page === "game" ? (
             <span className="room-badge">
               <span className="status-dot" />
-              <span className="room-name">{maps[mapId].label}</span> <i /> <span>{players.length}/{capacity}</span>
+              <span className="room-name">{maps[mapId].label}</span> <i /> <span>{humanPlayers.length}/{capacity}{players.length>humanPlayers.length?` · ${players.length-humanPlayers.length} NPC`:''}</span>
             </span>
           ) : (
             <span className="eyebrow desktop">
@@ -776,7 +778,7 @@ export function App() {
               className={socialTab === "people" ? "active" : ""}
               onClick={() => setSocialTab("people")}
             >
-              Trong chùa <span>{players.length}</span>
+              Trong chùa <span>{humanPlayers.length}</span>
             </button>
             <button
               className={socialTab === "friends" ? "active" : ""}
@@ -821,7 +823,7 @@ export function App() {
               </section>
             )}
             {socialTab === "people" ? (
-              players.map((p) => (
+              humanPlayers.map((p) => (
                 <div
                   className={`person-row ${selected === p.id ? "selected" : ""}`}
                   key={p.id}

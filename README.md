@@ -1,5 +1,13 @@
 # Một Ngày Đi Chùa
 
+## Khách viếng chùa tự động (NPC)
+
+Production bật mặc định 20 NPC: mỗi phòng đang hoạt động có khoảng 15–25 NPC, số lượng thay đổi từng người theo thời gian. NPC đi lại tránh vật cản, quét sân/tưới cây, lễ Phật/tĩnh tâm/nghe pháp hoặc nhận cơm–ăn–trả khay tùy bản đồ. Mọi người trong cùng phòng nhìn thấy cùng NPC. Số người online và danh sách kết bạn chỉ tính người thật; NPC có nhãn riêng và nhường ghế cho người chơi.
+
+Để điều chỉnh hoặc tắt, đặt `BOT_COUNT=20` hoặc `BOT_COUNT=0` trong `.env` và thêm override `-f compose.bots.yaml` vào lệnh Compose. Khi phòng gần đầy người thật, NPC giảm để nhường chỗ. Phòng vẫn tự đóng theo vòng đời Colyseus khi không còn kết nối thật; không duy trì bot client hay ghi tiến trình nhiệm vụ cho NPC. Khi chạy Node trực tiếp ở môi trường development, cần truyền `BOT_COUNT=20` qua môi trường process (Node không tự đọc `.env`).
+
+Cập nhật trên VPS có Nginx: giữ `SITE_ADDRESS=http://:80`, `PUBLIC_ORIGIN=https://1ngaydichua.modoha.io.vn` và ánh xạ `127.0.0.1:13030:80`. Chạy `git pull --ff-only` rồi `docker compose -p pagoda -f compose.yaml -f compose.bots.yaml up --build -d`. Bản cập nhật này không sửa `compose.yaml`, nên giữ được cấu hình cổng đã chỉnh riêng trên VPS. Giữ nguyên volume `pagoda-data` và cấu hình HTTPS của Nginx. Dùng cùng hai file Compose trong các lệnh cập nhật tiếp theo để giữ cấu hình NPC tùy chỉnh.
+
 Web game 3D multiplayer theo [spec v1.2](docs/one-day-at-pagoda-spec-v1.2.md). Một ngôi chùa Việt, hai nhân vật đồ lam cố định, không tài khoản, không cấp độ hay tiền thưởng.
 
 Hiện có **3 map riêng**. **Sân chùa giữ cảnh cũ** với sân gạch, hồ sen và kiến trúc chùa; Chính điện/Giảng đường và Nhà ăn giới hạn **50 người mỗi phòng**. Giảng đường có 50 đệm, Nhà ăn có 10 bàn × 5 ghế. Đến biển chuyển khu trước Chính điện hoặc bên trái sân và nhấn E/chạm nút. Giới hạn Sân chùa vẫn 100 như cấu hình trước. Xem [chi tiết](docs/three-maps.md).

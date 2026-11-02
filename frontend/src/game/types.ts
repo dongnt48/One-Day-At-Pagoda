@@ -13,6 +13,7 @@ export type Player = {
   tray?: boolean;
   seat?: string;
   title?: string;
+  isBot?: boolean;
 };
 export type Guest = {
   id: string;
