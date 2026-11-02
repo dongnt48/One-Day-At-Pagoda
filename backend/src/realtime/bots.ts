@@ -1,5 +1,6 @@
 import {maps,mapSpots,walkable,type MapId} from './maps.js';
 import {gatheringAt} from './gathering.js';
+import {funTitles} from '../quests/catalog.js';
 
 export type BotPlayer={id:string;displayName:string;avatar:string;x:number;y:number;z:number;rotationY:number;action:string;isBot:boolean;seat?:string;tray?:boolean;title?:string};
 type Point={x:number;z:number};
@@ -40,7 +41,7 @@ export class BotPopulation{
  private add(humans:ReadonlyArray<{seat?:string}>=[]){
   const point=this.pick([...this.grid.values()]);if(!point)return;
   const index=this.serial++;
-  const bot:Bot={player:{id:`npc-${this.mapId}-${index}`,displayName:names[index%names.length],avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true,title:'Khách viếng chùa'},path:[],until:0,meal:'collect',settled:this.mapId!=='courtyard'&&index%5!==0,bellKeeper:this.mapId==='courtyard'&&index>=2&&!this.bots.some(b=>b.bellKeeper)};
+  const bot:Bot={player:{id:`npc-${this.mapId}-${index}`,displayName:names[index%names.length],avatar:index%2?'female':'male',...point,y:0,rotationY:Math.PI,action:'idle',isBot:true},path:[],until:0,meal:'collect',settled:this.mapId!=='courtyard'&&index%5!==0,bellKeeper:this.mapId==='courtyard'&&index>=2&&!this.bots.some(b=>b.bellKeeper)};
   if(bot.settled){
    const occupied=new Set([...humans.map(p=>p.seat),...this.bots.flatMap(b=>[b.player.seat,b.destination?.seat])]);
    const seats=mapSpots[this.mapId].filter(s=>s.id.startsWith(this.mapId==='hall'?'listen-':'eat-')&&!occupied.has(s.id));
@@ -53,6 +54,8 @@ export class BotPopulation{
    bot.player.action=activity==='bell'?'idle':activity;
    bot.until=-(bot.bellKeeper?45000+this.random()*30000:60000+this.random()*180000);
   }
+  const titleId=bot.bellKeeper?'bell':bot.player.action==='sweep'?'broom':bot.player.action==='water'?'garden':this.mapId==='dining'?(index%2?'rice':'dishes'):this.mapId==='hall'?(index%2?'lotus':'turtle'):(index%2?'cloud':'sprout');
+  bot.player.title=funTitles.find(title=>title.id===titleId)?.name;
   this.bots.push(bot);
  }
  private route(start:Point,end:Point):Point[]|undefined{

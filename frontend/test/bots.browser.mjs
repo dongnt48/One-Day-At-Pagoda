@@ -25,8 +25,8 @@ test('NPCs render in the game but human counts and social list stay honest',{tim
   await page.getByRole('button',{name:'Bắt đầu',exact:true}).click();
   await page.waitForFunction(()=>document.querySelector('.room-badge')?.textContent.includes('6 khách viếng'),null,{timeout:20000});
   assert.match(await page.locator('.room-badge').textContent(),/1\/100.*6 khách viếng/);
-  await page.locator('.name-tag').filter({hasText:'Khách viếng chùa'}).first().waitFor({timeout:20000});
-  await page.locator('.name-tag').filter({hasText:'Khách viếng chùa'}).first().dispatchEvent('click');
+  await page.locator('.name-tag').filter({hasText:'An Nhiên'}).first().waitFor({timeout:20000});
+  await page.locator('.name-tag').filter({hasText:'An Nhiên'}).first().dispatchEvent('click');
   assert.equal(await page.locator('.dialog').count(),0,'NPC selection does not open social actions');
   const guest=await fetch('http://127.0.0.1:2581/api/guest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({displayName:'Người Thật Hai',avatar:'female'})});
   const ticket=await fetch('http://127.0.0.1:2581/api/ticket',{method:'POST',headers:{'Content-Type':'application/json',Cookie:guest.headers.get('set-cookie').split(';')[0]},body:'{}'}).then(r=>r.json());
@@ -35,7 +35,7 @@ test('NPCs render in the game but human counts and social list stay honest',{tim
   await page.locator('.name-tag').filter({hasText:'Người Thật Hai'}).dispatchEvent('click');
   await page.locator('.dialog').waitFor();
   assert.equal(await page.locator('.person-row').count(),2);
-  assert.ok(!(await page.locator('.social-scroll').textContent()).includes('Khách viếng chùa'));
+  assert.ok(!(await page.locator('.social-scroll').textContent()).includes('An Nhiên'));
   await page.keyboard.press('Escape');
   mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/bots-courtyard.png'});
   assert.deepEqual(errors,[]);

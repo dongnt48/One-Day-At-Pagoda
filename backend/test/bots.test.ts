@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {BotPopulation} from '../src/realtime/bots.js';
 import {walkable, type MapId} from '../src/realtime/maps.js';
+import {funTitles} from '../src/quests/catalog.js';
 
 function random(seed=19){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
 for(const map of ['courtyard','hall','dining'] as MapId[]){
@@ -18,6 +19,7 @@ for(const map of ['courtyard','hall','dining'] as MapId[]){
    assert.equal(new Set(seats).size,seats.length,'seats cannot overlap');
    for(const p of players){
     assert.equal(p.isBot,true);assert.ok(walkable(p.x,p.z,map),`${p.id} at ${p.x},${p.z}`);
+    assert.ok(funTitles.some(title=>title.name===p.title),'visitors wear an existing fun title');
     const before=positions.get(p.id);
     if(before)assert.ok(Math.hypot(p.x-before.x,p.z-before.z)<=.251,'no teleporting');
     positions.set(p.id,{x:p.x,z:p.z});actions.add(p.action);
