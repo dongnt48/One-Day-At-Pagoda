@@ -24,6 +24,9 @@ test('NPCs render in the game but human counts and social list stay honest',{tim
   await page.getByLabel('Tên của bạn').fill('Khách Kiểm Tra');
   await page.getByRole('button',{name:'Bắt đầu',exact:true}).click();
   await page.waitForFunction(()=>document.querySelector('.room-badge')?.textContent.includes('6 khách viếng'),null,{timeout:20000});
+  await page.getByRole('dialog',{name:'Một chút hướng dẫn trước khi đi dạo'}).waitFor();
+  await page.getByRole('button',{name:'Mình hiểu rồi, đi dạo thôi'}).click();
+  assert.equal(await page.evaluate(()=>localStorage.getItem('pagoda-movement-guide-v1')),'true');
   assert.match(await page.locator('.room-badge').textContent(),/1\/100.*6 khách viếng/);
   await page.locator('.name-tag').filter({hasText:'An Nhiên'}).first().waitFor({timeout:20000});
   await page.locator('.name-tag').filter({hasText:'An Nhiên'}).first().dispatchEvent('click');

@@ -1274,6 +1274,7 @@ input[type="range"] {
  .schedule-heading small { font-size:8px; }
  .schedule-time { font-size:11px; }
  .playing:has(.schedule-notice) .chat-show,.playing:has(.schedule-notice) .chat-panel { top:calc(138px + env(safe-area-inset-top)); }
+ .playing:has(.schedule-notice) .chat-show { bottom:auto; min-height:44px; }
  .playing:has(.schedule-notice) .chat-panel { max-height:calc(100dvh - 294px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
 }
 @media (max-height:500px) and (max-width:1100px), (max-height:500px) and (pointer:coarse) {
@@ -1362,3 +1363,7 @@ input[type="range"] {
  .quest-card-heading { gap:6px; }
  .quest-status-filter button { min-height:44px; }
 }
+/* First-visit movement instructions share the accessible dialog layout. */
+.movement-guide p { line-height: 1.65; margin: 0 0 16px; }
+.movement-guide kbd { display: inline-block; padding: 2px 7px; border: 1px solid #cbd3c0; border-radius: 5px; }
+.movement-guide .primary { width: 100%; margin-top: 8px; white-space: normal; }

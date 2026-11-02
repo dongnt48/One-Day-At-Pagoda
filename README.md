@@ -1,5 +1,7 @@
 # Một Ngày Đi Chùa
 
+Lần đầu vào game trên mỗi trình duyệt sẽ hiện hướng dẫn di chuyển, camera, zoom và tương tác phù hợp máy tính/điện thoại. Khi đóng hướng dẫn, trình duyệt lưu lựa chọn; có thể xem lại tại Cài đặt → Xem hướng dẫn. Xóa dữ liệu trình duyệt sẽ làm hướng dẫn xuất hiện lại.
+
 ## Thống kê truy cập riêng
 
 Game ghi nhận lượt mở trang từ khi triển khai tính năng này, lưu cùng SQLite/volume `pagoda-data`. Mỗi lần tải trang tính một lượt; cookie ẩn danh giúp đếm trình duyệt (không phải số người tuyệt đối). Ngày thống kê theo UTC+7; bot trong game và trang quản lý không được tính. Không thu thập IP, referrer hoặc nội dung chat vào dữ liệu thống kê. Trình duyệt chặn request/cookie có thể làm số liệu thấp hơn thực tế; đây không phải số liệu kiểm toán.

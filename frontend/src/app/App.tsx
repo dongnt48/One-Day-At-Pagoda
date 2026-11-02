@@ -35,6 +35,7 @@ import {interactionForPlayer} from '../game/controls/interaction';
 import {fitGameViewport} from '../game/controls/gameViewport';
 import {applyPatch,type StatePatch} from '../game/multiplayer/state';
 import { Dialog } from "../components/Dialog";
+import {MovementGuide} from '../components/MovementGuide';
 import { ScheduleNotice } from "../components/ScheduleNotice";
 import {QuestPanel} from '../components/QuestPanel';
 import type {QuestData,QuestProfile} from '../game/quests/types';
@@ -72,7 +73,7 @@ export function App() {
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
   const [questData,setQuestData]=useState<QuestData|null>(null);
-  const [modal, setModal] = useState<"social" | "settings" | "report" | "quests" | null>(
+  const [modal, setModal] = useState<"social" | "settings" | "report" | "quests" | "guide" | null>(
       null,
     ),
     [socialTab, setSocialTab] = useState<"people" | "friends">("people"),
@@ -93,6 +94,13 @@ export function App() {
     chatLog = useRef<HTMLDivElement>(null),
     socialRef = useRef(social);
   const me = players.find((p) => p.id === guest?.id);
+  const guideShown=useRef(false);
+  useEffect(()=>{
+    if(page!=='game'||!me||guideShown.current)return;
+    guideShown.current=true;
+    if(!saved('pagoda-movement-guide-v1',false))setModal('guide');
+  },[page,me]);
+  function closeGuide(){persist('pagoda-movement-guide-v1',true);setModal(null);}
   const humanPlayers = players.filter(p=>!p.isBot);
   const interaction=room?interactionForPlayer(mapId,me):undefined;
   useEffect(()=>leaveOnPageHide(window,()=>active.current,()=>{
@@ -171,6 +179,7 @@ export function App() {
       if (e.key === "Escape") {
         setError("");
         if (modal) {
+          if(modal==='guide')persist('pagoda-movement-guide-v1',true);
           setModal(null);
           setSelected(null);
         } else if (typing) {
@@ -721,8 +730,10 @@ export function App() {
           {notice}
         </div>
       )}
+      {modal==='guide'&&<MovementGuide onClose={closeGuide}/>}
       {modal === "settings" && (
         <Dialog title="Một chút tùy chỉnh" onClose={() => setModal(null)}>
+          <div className="setting-row"><span>Di chuyển và tương tác</span><button className="pill" onClick={()=>setModal('guide')}>Xem hướng dẫn</button></div>
           <div className="setting-row">
             <span>Âm thanh không gian</span>
             <button className="pill" onClick={toggleSound}>
