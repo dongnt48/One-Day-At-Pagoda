@@ -16,6 +16,7 @@ import { issueTicket } from "./guests/tickets.js";
 import { online } from "./realtime/presence.js";
 import { cleanText } from "./moderation/validation.js";
 import { PublicTempleRoom, MainHallRoom, DiningHallRoom } from "./rooms/PublicTempleRoom.js";
+import {analyticsRouter} from './analytics.js';
 const app = express();
 if (process.env.NODE_ENV === "production") app.set("trust proxy", 1);
 app.use(express.json({ limit: "4kb" }));
@@ -46,6 +47,7 @@ app.use(
   }),
 );
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
+app.use('/api',analyticsRouter());
 app.get("/api/me", (req, res) =>
   res.json({ guest: session(req.headers.cookie) || null }),
 );

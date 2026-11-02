@@ -1,5 +1,15 @@
 # Một Ngày Đi Chùa
 
+## Thống kê truy cập riêng
+
+Game ghi nhận lượt mở trang từ khi triển khai tính năng này, lưu cùng SQLite/volume `pagoda-data`. Mỗi lần tải trang tính một lượt; cookie ẩn danh giúp đếm trình duyệt (không phải số người tuyệt đối). Ngày thống kê theo UTC+7; bot trong game và trang quản lý không được tính. Không thu thập IP, referrer hoặc nội dung chat vào dữ liệu thống kê. Trình duyệt chặn request/cookie có thể làm số liệu thấp hơn thực tế; đây không phải số liệu kiểm toán.
+
+Trên VPS, tự đặt hai giá trị riêng trong `.env` (không commit): `ANALYTICS_PATH` gồm 12–100 chữ/số/gạch ngang/gạch dưới, `ANALYTICS_PASSWORD` ít nhất 16 ký tự. Có thể tạo mỗi giá trị bằng `openssl rand -hex 24`. Không dùng giá trị ví dụ làm mật khẩu thật. Để trống thì trang quản lý bị tắt; bộ đếm vẫn ghi nhận.
+
+Chạy `docker compose -p pagoda -f compose.yaml -f compose.bots.yaml -f compose.analytics.yaml up --build -d`. Giữ nguyên cấu hình cổng `13030` và Nginx của VPS. Mở `https://1ngaydichua.modoha.io.vn/api/private/<ANALYTICS_PATH>` rồi nhập tài khoản `admin` và mật khẩu đã đặt. Đường dẫn không xuất hiện trong frontend hoặc menu; mật khẩu vẫn bắt buộc, chỉ dùng qua HTTPS. Trình duyệt có thể lưu đăng nhập Basic Auth đến khi đóng phiên; dùng cửa sổ riêng nếu dùng máy chung. Đổi mật khẩu và tạo lại backend để thu hồi thông tin đăng nhập cũ.
+
+Local: truyền `ANALYTICS_PATH` và `ANALYTICS_PASSWORD` qua biến môi trường PowerShell trước khi chạy backend; xem trang tại cổng Vite `/api/private/<ANALYTICS_PATH>`. Các giá trị bí mật không được đưa vào bundle frontend.
+
 ## Khách viếng chùa tự động (NPC)
 
 Sân chùa giới hạn 5–6 khách tự động; chính điện và nhà ăn vẫn giữ số lượng theo `BOT_COUNT`. Tên và danh hiệu không hiển thị chữ NPC; bộ đếm tách người chơi và khách viếng.

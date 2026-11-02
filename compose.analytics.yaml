@@ -1,0 +1,5 @@
+services:
+  backend:
+    environment:
+      ANALYTICS_PATH: ${ANALYTICS_PATH:-}
+      ANALYTICS_PASSWORD: ${ANALYTICS_PASSWORD:-}
