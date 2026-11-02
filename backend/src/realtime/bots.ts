@@ -52,7 +52,19 @@ export class BotPopulation{
   if(!previous.has(to[0]))return;
   const path:Point[]=[end];let key:string|null=to[0];
   while(key!==null){path.push(this.grid.get(key)!);key=previous.get(key)!;}
-  return path.reverse();
+  const smooth:Point[]=[start];
+  // Merge collinear steps without cutting across obstacle corners or running
+  // another expensive line-of-sight search on the simulation thread.
+  for(const point of path.reverse()){
+   const last=smooth[smooth.length-1];
+   if(Math.hypot(point.x-last.x,point.z-last.z)<.000001)continue;
+   if(smooth.length>=2){
+    const previous=smooth[smooth.length-2],ax=last.x-previous.x,az=last.z-previous.z,bx=point.x-last.x,bz=point.z-last.z;
+    if(Math.abs(ax*bz-az*bx)<.000001&&ax*bx+az*bz>0)smooth.pop();
+   }
+   smooth.push(point);
+  }
+  return smooth.slice(1);
  }
  private choose(bot:Bot,occupied:Set<string>):Destination|undefined{
   const spots=mapSpots[this.mapId];
@@ -108,11 +120,16 @@ export class BotPopulation{
     bot.destination=destination;bot.path=path;
     if(destination.seat)occupied.add(destination.seat);
    }
-   const next=bot.path[0];
-   if(next){
-    const distance=Math.hypot(next.x-p.x,next.z-p.z),step=Math.min(distance,2.4*Math.min(dt/1000,.1));
-    if(distance>.001){p.rotationY=Math.atan2(next.x-p.x,next.z-p.z);p.x+=(next.x-p.x)*step/distance;p.z+=(next.z-p.z)*step/distance;p.action='walk';}
-    if(distance<=step+.001)bot.path.shift();
+   // Spend the entire movement budget, carrying the remainder past corners.
+   let remaining=2.4*Math.max(0,Math.min(dt/1000,.1));
+   while(bot.path.length){
+    const next=bot.path[0],distance=Math.hypot(next.x-p.x,next.z-p.z);
+    if(distance<.000001){p.x=next.x;p.z=next.z;bot.path.shift();continue;}
+    if(remaining<=0)break;
+    const step=Math.min(distance,remaining);
+    p.rotationY=Math.atan2(next.x-p.x,next.z-p.z);p.x+=(next.x-p.x)*step/distance;p.z+=(next.z-p.z)*step/distance;p.action='walk';
+    remaining-=step;
+    if(step>=distance){p.x=next.x;p.z=next.z;bot.path.shift();}else break;
    }
    if(!bot.path.length){
     const destination=bot.destination!;p.action=destination.action;p.seat=destination.seat;p.rotationY=Math.PI;

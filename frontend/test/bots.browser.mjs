@@ -39,8 +39,11 @@ test('NPCs render in the game but human counts and social list stay honest',{tim
   await page.keyboard.press('Escape');
   mkdirSync('test-results',{recursive:true});await page.screenshot({path:'test-results/bots-courtyard.png'});
   assert.deepEqual(errors,[]);
+ }catch(error){
+  console.error(error);
+  throw error;
  }finally{
-  await peer?.leave();
+  if(peer)await Promise.race([peer.leave().catch(()=>{}),new Promise(r=>setTimeout(r,1000))]);
   await browser?.close();
   if(backend.exitCode===null){const exited=new Promise(r=>backend.once('exit',r));backend.kill();await exited;}
   await vite?.close();

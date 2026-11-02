@@ -48,3 +48,21 @@ test('a moderately populated room retains ambient visitors when capacity allows'
  for(let now=0;now<120000;now+=100)population.update(now,100,humans,100);
  assert.ok(population.players.length>=15&&population.players.length<=25);
 });
+test('walking visitors keep their speed through straight route waypoints',()=>{
+ const population=new BotPopulation('hall',20,random());
+ let checked=0;
+ for(let now=0;now<30000;now+=100){
+  const before=new Map(population.players.map(p=>[p.id,{...p}]));
+  population.update(now,100,[],100);
+  for(const p of population.players){
+   const previous=before.get(p.id);
+   if(!previous||p.action!=='walk'||previous.action!=='walk')continue;
+   const distance=Math.hypot(p.x-previous.x,p.z-previous.z);
+   assert.ok(distance>0.001,'walking cannot pause at a waypoint');
+   if(Math.abs(p.rotationY-previous.rotationY)<.001){
+    assert.ok(Math.abs(distance-.24)<.001,`cruising speed dropped to ${distance}`);checked++;
+   }
+  }
+ }
+ assert.ok(checked>100);
+});
