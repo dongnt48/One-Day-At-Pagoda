@@ -5,6 +5,7 @@ export function MovementGuide({onClose}:{onClose:()=>void}){
  const touch=useTouchDevice();
  return <Dialog title="Một chút hướng dẫn trước khi đi dạo" onClose={onClose}>
   <div className="movement-guide">
+   <div className="movement-guide-content" tabIndex={0} aria-label="Cách di chuyển và tương tác">
    <p>Cứ thong thả khám phá, không cần vội nhé.</p>
    {touch?<>
     <p><b>Di chuyển:</b> chạm và kéo ở nửa trái màn hình.</p>
@@ -18,7 +19,8 @@ export function MovementGuide({onClose}:{onClose:()=>void}){
     <p><b>Tương tác:</b> đến gần một vị trí rồi nhấn <kbd>E</kbd> hoặc bấm nút hoạt động.</p>
    </>}
    <p>Đến gần biển chuyển khu để vào Chính điện hoặc Nhà ăn. Bạn có thể mở lại hướng dẫn trong <b>Cài đặt</b>.</p>
-   <button className="primary" onClick={onClose}>Mình hiểu rồi, đi dạo thôi</button>
+   </div>
+   <div className="movement-guide-footer"><button className="primary" onClick={onClose}>Mình hiểu rồi, đi dạo thôi</button></div>
   </div>
  </Dialog>;
 }

@@ -1367,3 +1367,24 @@ input[type="range"] {
 .movement-guide p { line-height: 1.65; margin: 0 0 16px; }
 .movement-guide kbd { display: inline-block; padding: 2px 7px; border: 1px solid #cbd3c0; border-radius: 5px; }
 .movement-guide .primary { width: 100%; margin-top: 8px; white-space: normal; }
+.modal-backdrop:has(.movement-guide) {
+ grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr);
+ height:var(--game-view-height,100dvh); min-height:0;
+ padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));
+}
+.dialog:has(.movement-guide) {
+ display:flex; flex-direction:column; min-width:0; min-height:0;
+ width:460px; max-height:100%; overflow:hidden; padding:20px;
+}
+.dialog:has(.movement-guide) .dialog-head { flex-shrink:0; align-items:flex-start; gap:8px; margin-bottom:12px; }
+.dialog:has(.movement-guide) .dialog-head h2 { min-width:0; font-size:clamp(18px,4.5vw,23px); line-height:1.3; overflow-wrap:anywhere; }
+.dialog:has(.movement-guide) .dialog-head button { flex:0 0 44px; width:44px; height:44px; min-height:44px; }
+.movement-guide { display:flex; flex-direction:column; min-height:0; }
+.movement-guide-content { min-height:0; overflow:auto; overscroll-behavior:contain; padding-right:4px; font-size:14px; }
+.movement-guide-footer { flex-shrink:0; padding-top:8px; background:var(--paper); }
+.movement-guide-footer .primary { margin:0; min-height:44px; padding:10px 12px; }
+@media (max-height:450px) {
+ .dialog:has(.movement-guide) { padding:12px 16px; }
+ .dialog:has(.movement-guide) .dialog-head { margin-bottom:4px; }
+ .movement-guide p { margin-bottom:10px; }
+}
